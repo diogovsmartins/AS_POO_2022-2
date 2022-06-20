@@ -6,5 +6,7 @@ _____
 
 ## <span style="color:#68D8D6">Class Diagram:</span>
 
-## ![](/home/diogo/dev/AS_POO_2022-2/Documentation/image-20220620190219554.png)
+```
+<img src="/documentation/ClassDiagram.png" alt="Class Diagram"/>
+```
 
