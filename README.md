@@ -2,8 +2,9 @@
 
 ____
 
-#  Projeto:<span style="color:#68D8D6">Aluralix</span>
+#  Projeto: Aluralix
+Projeto de avaliação Semestral, disciplina de Programação Orientada a Objetos.
 
-## <span style="color:#68D8D6">Class Diagram:</span>
+## Class Diagram:
 
 ![](Documentation/ClassDiagram.png)
