@@ -19,3 +19,5 @@
 - **In Code Review**: Após desenvolvido e criado o merge request, este processo entra em vigor e um dev responsabiliza-se por revisar o código escrito
 - **Smoke Test**: Após desenvolvido, serve como uma etapa de testes para validar o código escrito.
 - **Stable**: Última etapa de homologação, residem as features prontas para realizar o deploy na master/main. 
+
+- **Metodologia utilizada: Kanban**
