@@ -32,7 +32,7 @@
 ❗ **Instalar o .NET SDK v6.0.3 ou superior**
 
 ##### Windows 
-``` (https://dotnet.microsoft.com/en-us/download) ```
+``` <a target="_blank">https://dotnet.microsoft.com/en-us/download</a> ```
 
 ##### Ubuntu 20.04 - via Terminal
 ```
