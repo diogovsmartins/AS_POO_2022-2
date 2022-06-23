@@ -27,12 +27,12 @@
 - **Database**: Heroku (PostgreSQL)
 - **Testes Endpoint's:**: Postman
 
-### Orientação para testes
+### :crocodile: Orientação para testes
 
 ❗ **Instalar o .NET SDK v6.0.3 ou superior**
 
 ##### Windows 
-``` https://dotnet.microsoft.com/en-us/download ```
+``` (https://dotnet.microsoft.com/en-us/download) ```
 
 ##### Ubuntu 20.04 - via Terminal
 ```
