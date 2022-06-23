@@ -20,4 +20,4 @@
 - **Smoke Test**: Após desenvolvido, serve como uma etapa de testes para validar o código escrito.
 - **Stable**: Última etapa de homologação, residem as features prontas para realizar o deploy na master/main. 
 
-- **Metodologia utilizada: ** Kanban
+- **Metodologia utilizada:** Kanban
