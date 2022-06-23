@@ -11,7 +11,7 @@
 
 - Para criação de branch's, utilizar o prefixo ```feature-``` seguido do código da tarefa
 - Para commits, utilizar o seguinte template **[NomeDaTask-Codigo] - função da tarefa**, ex: 
-* ```[BEESPP-4864]-Create Inventory Filter```
+          * ```[BEESPP-4864]-Create Inventory Filter```
 ___
 ### 🔃 Ciclo de Desenvolvimento
 
