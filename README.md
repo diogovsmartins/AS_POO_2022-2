@@ -6,7 +6,7 @@
 ![](Documentation/ClassDiagram.png)
 
 ## 👨‍💻 Padrões para Desenvolvimento  
-___
+
 ### :octocat: GIT 
 
 - Para criação de branch's, utilizar o prefixo ```feature-```seguido do código da tarefa
