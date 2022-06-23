@@ -1,18 +1,18 @@
 #  Projeto: Ulbraflix 🎥 :right_anger_bubble:
-Projeto de Avaliação Semestral para disciplina de *Programação Orientada a Objetos* 💻. Consiste em um sistema simples simulando um reprodutor de vídeos (baseado no app Netflix).
+### Projeto de Avaliação Semestral para disciplina de *Programação Orientada a Objetos* 💻. Consiste em um sistema simples simulando um reprodutor de vídeos (baseado no app Netflix).
 
-## Class Diagram 📑
+## 📑 Class Diagram
 
 ![](Documentation/ClassDiagram.png)
 
-## Padrões para Desenvolvimento 👨‍💻 
+## 👨‍💻 Padrões para Desenvolvimento  
 
-### GIT :octocat:
+### :octocat: GIT 
 
 - Para criação de branch's, utilizar o prefixo ```feature-```seguido do código da tarefa
 - Para commits, utilizar o seguinte template **[NomeDaTask-Codigo] - função da tarefa**, ex: ```[BEESPP-4864]-Create Inventory Filter```
 
-### Ciclo de Desenvolvimento
+### 🔃 Ciclo de Desenvolvimento
 
 - **Ready for Development**: Task escrita e pronta para ser desenvolvida (regras de negócio ou melhorias a serem implementadas)
 - **In Development**: Autoexplicativa, é o processo de desenvolvimento e testes locais
