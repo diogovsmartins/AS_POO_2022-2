@@ -2,7 +2,7 @@
 
 ____
 
-#  Projeto: Aluralix
+#  Projeto: Ulbraflix
 Projeto de avaliação Semestral, disciplina de Programação Orientada a Objetos.
 
 ## Class Diagram:
