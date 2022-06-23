@@ -20,4 +20,24 @@
 - **Smoke Test**: Após desenvolvido, serve como uma etapa de testes para validar o código escrito.
 - **Stable**: Última etapa de homologação, residem as features prontas para realizar o deploy na master/main. 
 
-- **Metodologia utilizada:** Kanban
+### 🧰 Ferramentas
+
+- **Gestão de produção:** Trello
+- **Linguagem**: C# (.NET v6.0.3, EntityFramework v6.0.3)
+- **Database**: Heroku (PostgreSQL)
+- **Testes Endpoint's:**: Postman
+
+### Orientação para testes
+
+❗ **Instalar o .NET SDK v6.0.3 ou superior**
+
+##### Windows 
+``` https://dotnet.microsoft.com/en-us/download ```
+
+##### Ubuntu 20.04 - via Terminal
+```
+sudo apt-get update; \
+sudo apt-get install -y apt-transport-https && \
+sudo apt-get update && \
+sudo apt-get install -y dotnet-sdk-6.0
+```
