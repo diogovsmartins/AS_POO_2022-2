@@ -6,12 +6,12 @@
 ![](Documentation/ClassDiagram.png)
 
 ## 👨‍💻 Padrões para Desenvolvimento  
-
+___
 ### :octocat: GIT 
 
 - Para criação de branch's, utilizar o prefixo ```feature-```seguido do código da tarefa
 - Para commits, utilizar o seguinte template **[NomeDaTask-Codigo] - função da tarefa**, ex: ```[BEESPP-4864]-Create Inventory Filter```
-
+___
 ### 🔃 Ciclo de Desenvolvimento
 
 - **Ready for Development**: Task escrita e pronta para ser desenvolvida (regras de negócio ou melhorias a serem implementadas)
@@ -19,14 +19,14 @@
 - **In Code Review**: Após desenvolvido e criado o merge request, este processo entra em vigor e um dev responsabiliza-se por revisar o código escrito
 - **Smoke Test**: Após desenvolvido, serve como uma etapa de testes para validar o código escrito.
 - **Stable**: Última etapa de homologação, residem as features prontas para realizar o deploy na master/main. 
-
+___
 ### 🧰 Ferramentas
 
 - **Gestão de produção:** Trello
 - **Linguagem**: C# (.NET v6.0.3, EntityFramework v6.0.3)
 - **Database**: Heroku (PostgreSQL)
 - **Testes Endpoint's:**: Postman
-
+___
 ### :crocodile: Orientação para testes
 
 ❗ **Instalar o .NET SDK v6.0.3 ou superior**
