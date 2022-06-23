@@ -29,6 +29,7 @@ ___
 - **Linguagem**: C# (.NET v6.0.3, EntityFramework v6.0.3)
 - **Database**: Heroku (PostgreSQL)
 - **Testes Endpoint's:**: Postman
+- **Documentação de Endpoint's**: Swagger
 ___
 ### :crocodile: Orientação para testes
 
