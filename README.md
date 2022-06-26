@@ -9,10 +9,10 @@
 
 ### :octocat: GIT 
 
-- Para criação de branch's, utilizar o prefixo ```feature-``` seguido do código da tarefa
+- Para criação de branch's, utilizar o prefixo ```feature-``` seguido do nome de quem está fazendo a tarefa.
 - Para commits, utilizar o seguinte template **[NomeDaTask-Codigo] - função da tarefa**, ex: 
   ```
-  [BEESPP-4864]-Create Inventory Filter
+  [Create Entities-1]-Create domain Entities
   ```
 ___
 ### 🔃 Ciclo de Desenvolvimento
