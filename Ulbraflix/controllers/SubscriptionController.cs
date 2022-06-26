@@ -1,7 +1,13 @@
 namespace Ulbraflix.controllers
 {
-    public class SubscriptionController
+
+[ApiController]
+[Route("[controller]")]
+    public class SubscriptionController: ControllerBase
     {
-        
+        //TODO: Adicionar services necessários *-*
+        public SubscriptionController(){
+            //TODO: Inicializar os services :O
+        }
     }
 }
