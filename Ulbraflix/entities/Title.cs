@@ -6,4 +6,6 @@ public abstract class Title
     public string Name;
     public string Sinopsis;
     public bool IsWatched;
+    public List<Category> Categories;
+    public Rating Rating;
 }
