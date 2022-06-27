@@ -1,4 +1,4 @@
-namespace Ulbraflix.Controllers;
+namespace Ulbraflix.repositories;
 
 public interface IBaseRepository <Entity> where Entity : class
 {

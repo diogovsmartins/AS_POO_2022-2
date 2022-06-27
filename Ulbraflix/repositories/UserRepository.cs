@@ -1,8 +1,10 @@
+using Ulbraflix.repositories.interfaces;
+
 namespace Ulbraflix.Controllers;
 
 public class UserRepository : IUserRepository
 {
-    private DataCOntext _dataContext;
+    private DataContext _dataContext;
 
     public UserRepository(DataContext dataContext)
     {
