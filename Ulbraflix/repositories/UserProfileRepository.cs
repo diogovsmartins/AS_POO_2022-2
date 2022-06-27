@@ -13,7 +13,7 @@ public class UserProfileRepository : IUserProfileRepository
     
     public UserProfile GetById(int id)
     {
-        return _dataContext.UserProfile.SingleOrDefault(UserProfile => UserProfile.id = id);
+        return _dataContext.UserProfile.SingleOrDefault(userProfile => userProfile.id = id);
     }
 
     public List<UserProfile> GetAll()
@@ -33,7 +33,7 @@ public class UserProfileRepository : IUserProfileRepository
 
     public void Delete(int id)
     {
-        UserProfile UserProfile = GetById(id);
-        _dataContext.UserProfile.Remove(UserProfile);
+        UserProfile userProfile = GetById(id);
+        _dataContext.UserProfile.Remove(userProfile);
     }
 }

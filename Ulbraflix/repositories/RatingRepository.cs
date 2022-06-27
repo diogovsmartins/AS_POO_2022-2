@@ -14,7 +14,7 @@ public class RatingRepository : IRatingRepository
 
     public Rating GetById(int id)
     {
-        return _dataContext.Rating.SingleOrDefault(Rating => Rating.id = id);
+        return _dataContext.Rating.SingleOrDefault(rating => rating.id = id);
     }
 
     public List<Rating> GetAll()
@@ -34,7 +34,7 @@ public class RatingRepository : IRatingRepository
 
     public void Delete(int id)
     {
-        var Rating = GetById(id);
-        _dataContext.Rating.Remove(Rating);
+        var rating = GetById(id);
+        _dataContext.Rating.Remove(rating);
     }
 }

@@ -13,7 +13,7 @@ public class SubscriptionRepository : ISubscriptionRepository
     
     public Subscription GetById(int id)
     {
-        return _dataContext.Subscription.SingleOrDefault(Subscription => Subscription.id = id);
+        return _dataContext.Subscription.SingleOrDefault(subscription => subscription.id = id);
     }
 
     public List<Subscription> GetAll()
@@ -33,7 +33,7 @@ public class SubscriptionRepository : ISubscriptionRepository
 
     public void Delete(int id)
     {
-        Subscription Subscription = GetById(id);
-        _dataContext.Subscription.Remove(Subscription);
+        Subscription subscription = GetById(id);
+        _dataContext.Subscription.Remove(subscription);
     }
 }

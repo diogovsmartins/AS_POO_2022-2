@@ -12,7 +12,7 @@ public class WatchHistoryRepository : IWatchHistoryRepository
     }
     public WatchHistory GetById(int id)
     {
-        return _dataContext.WatchHistory.SingleOrDefault(WatchHistory => WatchHistory.id = id);
+        return _dataContext.WatchHistory.SingleOrDefault(watchHistory => watchHistory.id = id);
     }
 
     public List<WatchHistory> GetAll()
@@ -32,7 +32,7 @@ public class WatchHistoryRepository : IWatchHistoryRepository
 
     public void Delete(int id)
     {
-        WatchHistory WatchHistory = GetById(id);
-        _dataContext.WatchHistory.Remove(WatchHistory);
+        WatchHistory watchHistory = GetById(id);
+        _dataContext.WatchHistory.Remove(watchHistory);
     }
 }

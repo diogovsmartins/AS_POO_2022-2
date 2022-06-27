@@ -12,7 +12,7 @@ public class MovieRepository : IMovieRepository
     }
     public Movie GetById(int id)
     {
-        return _dataContext.Movie.SingleOrDefault(Movie => Movie.id = id);
+        return _dataContext.Movie.SingleOrDefault(movie => movie.id = id);
     }
 
     public List<Movie> GetAll()
@@ -32,7 +32,7 @@ public class MovieRepository : IMovieRepository
 
     public void Delete(int id)
     {
-        Movie Movie = GetById(id);
-        _dataContext.Movie.Remove(Movie);
+        Movie movie = GetById(id);
+        _dataContext.Movie.Remove(movie);
     }
 }

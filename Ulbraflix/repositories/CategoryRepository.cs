@@ -13,7 +13,7 @@ public class CategoryRepository : ICategoryRepository
     public Category GetById(int id)
     {
         return _dataContext.Category.SingleOrDefault(
-            Category => Category.id = id);
+            category => category.id = id);
     }
 
     public List<Category> GetAll()
@@ -33,7 +33,7 @@ public class CategoryRepository : ICategoryRepository
 
     public void Delete(int id)
     {
-        Category Category = GetById(id);
-        _dataContext.Category.Remove(Category);
+        Category category = GetById(id);
+        _dataContext.Category.Remove(category);
     }
 }

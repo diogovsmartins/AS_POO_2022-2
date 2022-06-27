@@ -12,7 +12,7 @@ public class SerieEpisodeRepository : ISerieEpisodeRepository
     }
     public SerieEpisode GetById(int id)
     {
-        return _dataContext.SerieEpisode.SingleOrDefault(SerieEpisode => SerieEpisode.id = id);
+        return _dataContext.SerieEpisode.SingleOrDefault(serieEpisode => serieEpisode.id = id);
     }
 
     public List<SerieEpisode> GetAll()
@@ -32,7 +32,7 @@ public class SerieEpisodeRepository : ISerieEpisodeRepository
 
     public void Delete(int id)
     {
-        SerieEpisode SerieEpisode = GetById(id);
-        _dataContext.SerieEpisode.Remove(SerieEpisode);
+        SerieEpisode serieEpisode = GetById(id);
+        _dataContext.SerieEpisode.Remove(serieEpisode);
     }
 }
