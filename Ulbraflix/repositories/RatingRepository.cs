@@ -2,12 +2,12 @@ using Ulbraflix.repositories.interfaces;
 
 namespace Ulbraflix.repositories;
 
-public class Rating : IRatingRepository
+public class RatingRepository : IRatingRepository
 
 {
     private DataContext _dataContext;
 
-    public Rating(DataContext dataContext)
+    public RatingRepository(DataContext dataContext)
     {
         _dataContext = dataContext;
     }

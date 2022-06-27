@@ -2,11 +2,11 @@ using Ulbraflix.repositories.interfaces;
 
 namespace Ulbraflix.repositories;
 
-public class Category : ICategoryRepository
+public class CategoryRepository : ICategoryRepository
 {
     private DataContext _dataContext;
 
-    public Category(DataContext dataContext)
+    public CategoryRepository(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
