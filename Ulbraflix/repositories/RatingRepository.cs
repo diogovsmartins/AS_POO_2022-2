@@ -2,38 +2,39 @@ using Ulbraflix.repositories.interfaces;
 
 namespace Ulbraflix.repositories;
 
-public class RatingRepository : IRatingRepository
+public class Rating : IRatingRepository
+
 {
     private DataContext _dataContext;
 
-    public RatingRepository(DataContext dataContext)
+    public Rating(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
-    public RatingRepository GetById(int id)
+
+    public Rating GetById(int id)
     {
-        return _dataContext.RatingRepository.SingleOrDefault(
-            RatingRepository => RatingRepository.id = id);
+        return _dataContext.Rating.SingleOrDefault(Rating => Rating.id = id);
     }
 
-    public List<RatingRepository> GetAll()
+    public List<Rating> GetAll()
     {
-        return _dataContext.RatingRepository.ToList();
+        return _dataContext.Rating.ToList();
     }
 
-    public void Insert(RatingRepository entity)
+    public void Insert(Rating entity)
     {
-        _dataContext.RatingRepository.Add(entity);
+        _dataContext.Rating.Add(entity);
     }
 
-    public void Update(RatingRepository entity)
+    public void Update(Rating entity)
     {
-        _dataContext.RatingRepository.Update(entity);
+        _dataContext.Rating.Update(entity);
     }
 
     public void Delete(int id)
     {
-        RatingRepository RatingRepository = GetById(id);
-        _dataContext.RatingRepository.Remove(RatingRepository);
+        var Rating = GetById(id);
+        _dataContext.Rating.Remove(Rating);
     }
 }

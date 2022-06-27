@@ -2,38 +2,38 @@ using Ulbraflix.repositories.interfaces;
 
 namespace Ulbraflix.repositories;
 
-public class CategoryRepository : ICategoryRepository
+public class Category : ICategoryRepository
 {
     private DataContext _dataContext;
 
-    public CategoryRepository(DataContext dataContext)
+    public Category(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
-    public CategoryRepository GetById(int id)
+    public Category GetById(int id)
     {
-        return _dataContext.CategoryRepository.SingleOrDefault(
-            CategoryRepository => CategoryRepository.id = id);
+        return _dataContext.Category.SingleOrDefault(
+            Category => Category.id = id);
     }
 
-    public List<CategoryRepository> GetAll()
+    public List<Category> GetAll()
     {
-        return _dataContext.CategoryRepository.ToList();
+        return _dataContext.Category.ToList();
     }
 
-    public void Insert(CategoryRepository entity)
+    public void Insert(Category entity)
     {
-        _dataContext.CategoryRepository.Add(entity);
+        _dataContext.Category.Add(entity);
     }
 
-    public void Update(CategoryRepository entity)
+    public void Update(Category entity)
     {
-        _dataContext.CategoryRepository.Update(entity);
+        _dataContext.Category.Update(entity);
     }
 
     public void Delete(int id)
     {
-        CategoryRepository CategoryRepository = GetById(id);
-        _dataContext.CategoryRepository.Remove(CategoryRepository);
+        Category Category = GetById(id);
+        _dataContext.Category.Remove(Category);
     }
 }
