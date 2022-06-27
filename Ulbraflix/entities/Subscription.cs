@@ -1,0 +1,14 @@
+﻿using Ulbraflix.entities.enums;
+
+namespace Ulbraflix.entities;
+
+public class Subscription
+{
+    public int Id { get; set; }
+    public SubscriptionEnum SubscriptionType { get; set; }
+    public bool IsActive { get; set; }
+    public string PaymentMethod { get; set; }
+    public decimal PaymentValue { get; set; }
+    public List<User> Users { get; set; }
+    public List<UserProfile> UsersProfiles { get; set; }
+}
