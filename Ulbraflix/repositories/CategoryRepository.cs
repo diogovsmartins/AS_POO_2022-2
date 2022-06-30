@@ -1,3 +1,4 @@
+using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
 namespace Ulbraflix.repositories;
