@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/diogo/dev/AS_POO_2022-2/Ulbraflix/Ulbraflix.csproj": {}
+    "C:\\Users\\rafael.santos\\Desktop\\Ulbra\\2022-1\\AS_POO_2022-2\\Ulbraflix\\Ulbraflix.csproj": {}
   },
   "projects": {
-    "/home/diogo/dev/AS_POO_2022-2/Ulbraflix/Ulbraflix.csproj": {
+    "C:\\Users\\rafael.santos\\Desktop\\Ulbra\\2022-1\\AS_POO_2022-2\\Ulbraflix\\Ulbraflix.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/diogo/dev/AS_POO_2022-2/Ulbraflix/Ulbraflix.csproj",
+        "projectUniqueName": "C:\\Users\\rafael.santos\\Desktop\\Ulbra\\2022-1\\AS_POO_2022-2\\Ulbraflix\\Ulbraflix.csproj",
         "projectName": "Ulbraflix",
-        "projectPath": "/home/diogo/dev/AS_POO_2022-2/Ulbraflix/Ulbraflix.csproj",
-        "packagesPath": "/home/diogo/.nuget/packages/",
-        "outputPath": "/home/diogo/dev/AS_POO_2022-2/Ulbraflix/obj/",
+        "projectPath": "C:\\Users\\rafael.santos\\Desktop\\Ulbra\\2022-1\\AS_POO_2022-2\\Ulbraflix\\Ulbraflix.csproj",
+        "packagesPath": "C:\\Users\\rafael.santos\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rafael.santos\\Desktop\\Ulbra\\2022-1\\AS_POO_2022-2\\Ulbraflix\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/diogo/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\rafael.santos\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
