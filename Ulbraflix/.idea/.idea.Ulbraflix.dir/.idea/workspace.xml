@@ -26,6 +26,8 @@
       <change afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Ulbraflix.runtimeconfig.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/Debug/net6.0/appsettings.Development.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/Debug/net6.0/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entities/Category.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entities/Rating.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.MvcApplicationPartsAssemblyInfo.cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.csproj.CopyComplete" afterDir="false" />
@@ -39,6 +41,8 @@
       <change afterPath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Ulbraflix.dll" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/obj/Debug/net6.0/staticwebassets.build.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ulbraflix.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ulbraflix.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/Title.cs" beforeDir="false" afterPath="$PROJECT_DIR$/entities/Title.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,19 +60,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Ulbraflix">
     <configuration name="Ulbraflix" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Ulbraflix.csproj" />
@@ -110,6 +115,7 @@
       <option name="presentableId" value="Default" />
       <updated>1655764393423</updated>
       <workItem from="1655764399752" duration="645000" />
+      <workItem from="1656365622251" duration="209000" />
     </task>
     <task id="LOCAL-00001" summary="[CreateEntities] Creating domain entities">
       <created>1656364748372</created>

@@ -9,6 +9,6 @@ public class Subscription
     public bool IsActive { get; set; }
     public string PaymentMethod { get; set; }
     public decimal PaymentValue { get; set; }
-    public List<User> Users { get; set; }
+    public User User { get; set; }
     public List<UserProfile> UsersProfiles { get; set; }
 }
