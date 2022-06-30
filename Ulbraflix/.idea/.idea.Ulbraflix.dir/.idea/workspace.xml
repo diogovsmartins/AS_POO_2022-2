@@ -9,20 +9,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd54ab6a-d686-4933-b80a-ad9d98c95a9e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/repositories/SubscriptionRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repositories/UserProfileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repositories/interfaces/IUserProfileRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ulbraflix.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ulbraflix.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ulbraflix.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ulbraflix.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/ISubscriptionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ISubscriptionRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/IUserProfile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/interfaces/IUserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/UserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ulbraflix.dir/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ulbraflix.dir/.idea/indexLayout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ulbraflix.dir/.idea/projectSettingsUpdater.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ulbraflix.dir/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.MvcApplicationPartsAssemblyInfo.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.csproj.CopyComplete" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.csproj.CoreCompileInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.csproj.FileListAbsolute.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.genruntimeconfig.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Ulbraflix.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/apphost.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Ulbraflix.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Ulbraflix.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/staticwebassets.build.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Ulbraflix.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Ulbraflix.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Ulbraflix.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///home/diogo/dev/AS_POO_2022-2/Ulbraflix/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/diogo/dev/AS_POO_2022-2/Ulbraflix/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
