@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Ulbraflix.entities;
 
 namespace Ulbraflix.controllers
 {
