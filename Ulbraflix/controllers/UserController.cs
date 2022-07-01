@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace Ulbraflix.controllers
 {
 
@@ -7,38 +9,38 @@ namespace Ulbraflix.controllers
 public class UserController : ControllerBase
     {
         //TODO:Adicionar a service correspondente :D
-        public UserController(UserService UserService)
+        public UserController(UserService userService)
         {
             //TODO:Inicializar o service correspondente xD
         }
         [HttpGet]
-        public IEnumerable<User> GetUsers()
+        public Task<User> GetUsers()
         {
             
         }
 
     
-        [HttpGet]
-        public ActionResult GetUserById()
+        [HttpGet("{id:int}")]
+        public ActionResult GetUserById(int id)
         {
             
         }
 
     
         [HttpPost]
-        public IActionResult InsertUser()
+        public IActionResult InsertUser([FromBody] User user)
         {
             
         }
 
         [HttpPut]
-        public ActionResult UpdateUser()
+        public ActionResult UpdateUser([FromBody] User user)
         {
             
         }
 
-        [HttpDelete]
-        public ActionResult DeleteUser()
+        [HttpDelete("{id:int}")]
+        public ActionResult DeleteUser(int id)
         {
             
         }
