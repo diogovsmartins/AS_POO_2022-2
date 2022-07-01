@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="controllers" />
+    <Folder Include="data\mappings" />
     <Folder Include="entities" />
     <Folder Include="services" />
   </ItemGroup>

@@ -1,3 +1,5 @@
+using System.Linq;
+using Ulbraflix.data.context;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
