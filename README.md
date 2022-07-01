@@ -38,7 +38,7 @@ ___
 ##### Windows 
 <a target="_blank"> https://dotnet.microsoft.com/en-us/download </a>
 
-##### Ubuntu 20.04 - via Terminal
+##### Ubuntu 20.04 - Via Terminal
 ```
 sudo apt-get update; \
 sudo apt-get install -y apt-transport-https && \
