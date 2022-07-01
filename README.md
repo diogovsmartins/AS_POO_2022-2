@@ -2,7 +2,6 @@
 #### Projeto de Avaliação Semestral para disciplina de *Programação Orientada a Objetos* 💻. Consiste em um sistema simples simulando um reprodutor de vídeos (baseado no app Netflix).
 
 ## 📑 Class Diagram
-
 ![](Documentation/ClassDiagram.png)
 
 ## 👨‍💻 Padrões para Desenvolvimento  
