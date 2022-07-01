@@ -21,19 +21,61 @@ public class UserRepository : IUserRepository
         return _dataContext.User.ToList();
     }
 
-    public void Insert(User entity)
+    public bool Insert(User entity)
     {
-        _dataContext.User.Add(entity);
+        if (entity.Equals(null) ||
+            entity.Email.Equals(String.Empty) ||
+            entity.Password.Equals(String.Empty)) 
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.User.Add(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Update(User entity)
+    public bool Update(User entity)
     {
-        _dataContext.User.Update(entity);
+        
+        if (entity.Equals(null) ||
+            entity.Email.Equals(String.Empty) ||
+            entity.Password.Equals(String.Empty)) 
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {        
+            _dataContext.User.Update(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        User user = GetById(id);
-        _dataContext.User.Remove(user);
+        bool success=true;
+        try
+        {
+            User user = GetById(id);
+            _dataContext.User.Remove(user);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 }

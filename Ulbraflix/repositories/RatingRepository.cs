@@ -23,19 +23,59 @@ public class RatingRepository : IRatingRepository
         return _dataContext.Rating.ToList();
     }
 
-    public void Insert(Rating entity)
+    public bool Insert(Rating entity)
     {
-        _dataContext.Rating.Add(entity);
+        if (entity.Equals(null) ||
+            entity.RatingValue==0)
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.Rating.Add(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
+        
     }
 
-    public void Update(Rating entity)
+    public bool Update(Rating entity)
     {
-        _dataContext.Rating.Update(entity);
+        if (entity.Equals(null) ||
+            entity.RatingValue==0)
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.Rating.Update(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        var rating = GetById(id);
-        _dataContext.Rating.Remove(rating);
+        bool success=true;
+        try
+        {
+            var rating = GetById(id);
+            _dataContext.Rating.Remove(rating);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 }

@@ -21,19 +21,58 @@ public class WatchHistoryRepository : IWatchHistoryRepository
         return _dataContext.WatchHistory.ToList();
     }
 
-    public void Insert(WatchHistory entity)
+    public bool Insert(WatchHistory entity)
     {
-        _dataContext.WatchHistory.Add(entity);
+        if (entity.Equals(null) ||
+            entity.Titles.Count==0)
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {        
+            _dataContext.WatchHistory.Add(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Update(WatchHistory entity)
+    public bool Update(WatchHistory entity)
     {
-        _dataContext.WatchHistory.Update(entity);
+        if (entity.Equals(null) ||
+            entity.Titles.Count==0)
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {        
+            _dataContext.WatchHistory.Update(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        WatchHistory watchHistory = GetById(id);
-        _dataContext.WatchHistory.Remove(watchHistory);
+        bool success=true;
+        try
+        {
+            WatchHistory watchHistory = GetById(id);
+            _dataContext.WatchHistory.Remove(watchHistory);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 }

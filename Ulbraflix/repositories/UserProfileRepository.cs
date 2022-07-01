@@ -22,19 +22,58 @@ public class UserProfileRepository : IUserProfileRepository
         return _dataContext.UserProfile.ToList();
     }
 
-    public void Insert(UserProfile entity)
+    public bool Insert(UserProfile entity)
     {
-        _dataContext.UserProfile.Add(entity);
+        if (entity.Equals(null) ||
+            entity.Name.Equals(String.Empty))
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.UserProfile.Add(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Update(UserProfile entity)
+    public bool Update(UserProfile entity)
     {
-        _dataContext.UserProfile.Update(entity);
+        if (entity.Equals(null) ||
+            entity.Name.Equals(String.Empty))
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.UserProfile.Update(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        UserProfile userProfile = GetById(id);
-        _dataContext.UserProfile.Remove(userProfile);
+        bool success=true;
+        try
+        {
+            UserProfile userProfile = GetById(id);
+            _dataContext.UserProfile.Remove(userProfile);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 }

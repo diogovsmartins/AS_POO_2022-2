@@ -22,19 +22,63 @@ public class SubscriptionRepository : ISubscriptionRepository
         return _dataContext.Subscription.ToList();
     }
 
-    public void Insert(Subscription entity)
+    public bool Insert(Subscription entity)
     {
-        _dataContext.Subscription.Add(entity);
+        if (entity.Equals(null) ||
+            entity.User.Equals(null) ||
+            entity.PaymentMethod.Equals(String.Empty) ||
+            entity.PaymentValue==0 ||
+            entity.SubscriptionType.Equals(null)) throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            entity.IsActive = true;
+            _dataContext.Subscription.Add(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Update(Subscription entity)
+    public bool Update(Subscription entity)
     {
-        _dataContext.Subscription.Update(entity);
+        if (entity.Equals(null) ||
+            entity.User.Equals(null) ||
+            entity.PaymentMethod.Equals(String.Empty) ||
+            entity.PaymentValue==0 ||
+            entity.SubscriptionType.Equals(null)) throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.Subscription.Update(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        Subscription subscription = GetById(id);
-        _dataContext.Subscription.Remove(subscription);
+        bool success=true;
+        try
+        {
+            Subscription subscription = GetById(id);
+            _dataContext.Subscription.Remove(subscription);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 }

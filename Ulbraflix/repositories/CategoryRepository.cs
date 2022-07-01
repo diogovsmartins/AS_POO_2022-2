@@ -22,19 +22,56 @@ public class CategoryRepository : ICategoryRepository
         return _dataContext.Category.ToList();
     }
 
-    public void Insert(Category entity)
+    public bool Insert(Category entity)
     {
-        _dataContext.Category.Add(entity);
+        bool success=true;
+        if (entity.Equals(null) ||
+            entity.Name.Equals(String.Empty)) throw new ArgumentException();
+        try
+        {
+            _dataContext.Category.Add(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Update(Category entity)
+    public bool Update(Category entity)
     {
-        _dataContext.Category.Update(entity);
+        bool success=true;
+        if (entity.Equals(null) ||
+            entity.Name.Equals(String.Empty)) throw new ArgumentException();
+        try
+        {
+            _dataContext.Category.Update(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        Category category = GetById(id);
-        _dataContext.Category.Remove(category);
+        bool success=true;
+        try
+        {
+            Category category = GetById(id);
+            _dataContext.Category.Remove(category);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 }

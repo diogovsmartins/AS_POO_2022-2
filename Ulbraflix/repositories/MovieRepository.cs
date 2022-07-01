@@ -21,19 +21,60 @@ public class MovieRepository : IMovieRepository
         return _dataContext.Movie.ToList();
     }
 
-    public void Insert(Movie entity)
+    public bool Insert(Movie entity)
     {
-        _dataContext.Movie.Add(entity);
+        if (entity.Equals(null) ||
+            entity.Name.Equals(String.Empty) ||
+            entity.Sinopsis.Equals(String.Empty) ||
+            entity.Categories.Count==0) throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.Movie.Add(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Update(Movie entity)
+    public bool Update(Movie entity)
     {
-        _dataContext.Movie.Update(entity);
+        if (entity.Equals(null) ||
+            entity.Name.Equals(String.Empty) ||
+            entity.Sinopsis.Equals(String.Empty) ||
+            entity.Categories.Count==0) throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.Movie.Update(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        Movie movie = GetById(id);
-        _dataContext.Movie.Remove(movie);
+        bool success=true;
+        try
+        {
+            Movie movie = GetById(id);
+            _dataContext.Movie.Remove(movie);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 }

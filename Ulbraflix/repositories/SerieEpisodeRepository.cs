@@ -1,3 +1,4 @@
+using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
 namespace Ulbraflix.repositories;
@@ -20,19 +21,60 @@ public class SerieEpisodeRepository : ISerieEpisodeRepository
         return _dataContext.SerieEpisode.ToList();
     }
 
-    public void Insert(SerieEpisode entity)
+    public bool Insert(SerieEpisode entity)
     {
-        _dataContext.SerieEpisode.Add(entity);
+        if (entity.Equals(null)||
+            entity.Duration == 0 ||
+            entity.Sinopsis.Equals(String.Empty))
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.SerieEpisode.Add(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Update(SerieEpisode entity)
+    public bool Update(SerieEpisode entity)
     {
-        _dataContext.SerieEpisode.Update(entity);
+        if (entity.Equals(null)||
+            entity.Duration == 0 ||
+            entity.Sinopsis.Equals(String.Empty))
+            throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.SerieEpisode.Update(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        SerieEpisode serieEpisode = GetById(id);
-        _dataContext.SerieEpisode.Remove(serieEpisode);
+        bool success=true;
+        try
+        {
+            SerieEpisode serieEpisode = GetById(id);
+            _dataContext.SerieEpisode.Remove(serieEpisode);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 }

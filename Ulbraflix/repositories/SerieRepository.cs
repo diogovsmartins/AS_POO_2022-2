@@ -21,19 +21,60 @@ public class SerieRepository : ISerieRepository
         return _dataContext.Serie.ToList();
     }
 
-    public void Insert(Serie entity)
+    public bool Insert(Serie entity)
     {
-        _dataContext.Serie.Add(entity);
+        if (entity.Equals(null) ||
+            entity.Name.Equals(String.Empty) ||
+            entity.Sinopsis.Equals(String.Empty) ||
+            entity.Categories.Count==0) throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.Serie.Add(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Update(Serie entity)
+    public bool Update(Serie entity)
     {
-        _dataContext.Serie.Update(entity);
+        if (entity.Equals(null) ||
+            entity.Name.Equals(String.Empty) ||
+            entity.Sinopsis.Equals(String.Empty) ||
+            entity.Categories.Count==0) throw new ArgumentException();
+        bool success=true;
+        try
+        {
+            _dataContext.Serie.Update(entity);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        Serie serie = GetById(id);
-        _dataContext.Serie.Remove(serie);
+        bool success=true;
+        try
+        {
+            Serie serie = GetById(id);
+            _dataContext.Serie.Remove(serie);
+            _dataContext.SaveChanges();
+            return success;
+        }
+        catch (Exception e )
+        {
+            success = false;
+        }
+        return success;
     }
 }
