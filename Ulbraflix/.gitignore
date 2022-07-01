@@ -12,6 +12,7 @@
 *.idea/*
 *obj/*
 *bin/*
+/obj
 
 # User-specific files
 *.rsuser
