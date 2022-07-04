@@ -9,14 +9,14 @@ public class UserProfileRepository : IUserProfileRepository
 {
     private DataContext _dataContext;
 
-    public UserRepository(DataContext dataContext)
+    public UserProfileRepository(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
     
     public UserProfile GetById(int id)
     {
-        return _dataContext.UserProfile.SingleOrDefault(userProfile => userProfile.id = id);
+        return _dataContext.UserProfile.SingleOrDefault(userProfile => userProfile.Id == id);
     }
 
     public List<UserProfile> GetAll()

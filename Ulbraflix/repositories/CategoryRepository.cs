@@ -1,4 +1,5 @@
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
@@ -15,8 +16,7 @@ public class CategoryRepository : ICategoryRepository
     }
     public Category GetById(int id)
     {
-        return _dataContext.Category.SingleOrDefault(
-            category => category.id = id);
+        return _dataContext.Category.SingleOrDefault(category => category.Id == id);
     }
 
     public List<Category> GetAll()

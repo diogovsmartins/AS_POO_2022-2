@@ -15,7 +15,7 @@ public class WatchHistoryRepository : IWatchHistoryRepository
     }
     public WatchHistory GetById(int id)
     {
-        return _dataContext.WatchHistory.SingleOrDefault(watchHistory => watchHistory.id = id);
+        return _dataContext.WatchHistory.SingleOrDefault(watchHistory => watchHistory.Id == id);
     }
 
     public List<WatchHistory> GetAll()

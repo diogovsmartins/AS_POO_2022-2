@@ -15,7 +15,7 @@ public class SerieRepository : ISerieRepository
     }
     public Serie GetById(int id)
     {
-        return _dataContext.Serie.SingleOrDefault(serie => serie.id = id);
+        return _dataContext.Serie.SingleOrDefault(serie => serie.Id == id);
     }
 
     public List<Serie> GetAll()

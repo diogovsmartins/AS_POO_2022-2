@@ -4,18 +4,19 @@ using Ulbraflix.entities;
 
 namespace Ulbraflix.data.mappings;
 
-public class RatingMap : IEntityTypeConfiguration<Rating>
+public class UserProfileMap : IEntityTypeConfiguration<UserProfile>
 {
-    public void Configure(EntityTypeBuilder<Rating> builder)
+    public void Configure(EntityTypeBuilder<UserProfile> builder)
     {
-        builder.ToTable("rating");
+        builder.ToTable("user_profile");
         
         builder.HasKey(e => e.Id);
 
         builder.Property(e => e.Id)
             .HasColumnName("id");
 
-        builder.Property(e => e.RatingValue)
-            .HasColumnName("rating_value");
+        builder.Property(e => e.Name)
+            .HasColumnName("name")
+            .HasMaxLength(50);
     }
 }

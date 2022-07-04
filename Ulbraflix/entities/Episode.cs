@@ -1,6 +1,8 @@
-﻿namespace Ulbraflix.entities;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class SerieEpisode
+namespace Ulbraflix.entities;
+
+public class Episode
 {
     public int Id { get; set; }
     public string Sinopsis { get; set; }

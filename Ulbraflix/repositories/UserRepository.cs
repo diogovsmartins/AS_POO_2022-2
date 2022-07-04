@@ -15,7 +15,7 @@ public class UserRepository : IUserRepository
     }
     public User GetById(int id)
     {
-        return _dataContext.User.SingleOrDefault(user => user.id = id);
+        return _dataContext.User.SingleOrDefault(user => user.Id == id);
     }
 
     public List<User> GetAll()
