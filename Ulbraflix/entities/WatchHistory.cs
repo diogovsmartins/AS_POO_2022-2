@@ -1,4 +1,6 @@
-﻿namespace Ulbraflix.entities;
+﻿using System.Collections.Generic;
+
+namespace Ulbraflix.entities;
 
 public class WatchHistory
 {

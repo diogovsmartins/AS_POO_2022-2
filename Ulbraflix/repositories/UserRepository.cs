@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Ulbraflix.data.context;
 using Ulbraflix.entities;
@@ -13,6 +14,7 @@ public class UserRepository : IUserRepository
     {
         _dataContext = dataContext;
     }
+
     public User GetById(int id)
     {
         return _dataContext.User.SingleOrDefault(user => user.Id == id);
@@ -26,16 +28,19 @@ public class UserRepository : IUserRepository
     public void Insert(User entity)
     {
         _dataContext.User.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Update(User entity)
     {
         _dataContext.User.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Delete(int id)
     {
         User user = GetById(id);
         _dataContext.User.Remove(user);
+        _dataContext.SaveChangesAsync();
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Ulbraflix.data.context;
 using Ulbraflix.entities;
@@ -13,7 +14,7 @@ public class SubscriptionRepository : ISubscriptionRepository
     {
         _dataContext = dataContext;
     }
-    
+
     public Subscription GetById(int id)
     {
         return _dataContext.Subscription.SingleOrDefault(subscription => subscription.Id == id);
@@ -26,17 +27,21 @@ public class SubscriptionRepository : ISubscriptionRepository
 
     public void Insert(Subscription entity)
     {
+        entity.IsActive = true;
         _dataContext.Subscription.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Update(Subscription entity)
     {
         _dataContext.Subscription.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Delete(int id)
     {
         Subscription subscription = GetById(id);
         _dataContext.Subscription.Remove(subscription);
+        _dataContext.SaveChangesAsync();
     }
 }
