@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Ulbraflix.data.context;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
@@ -11,10 +15,10 @@ public class CategoryRepository : ICategoryRepository
     {
         _dataContext = dataContext;
     }
+
     public Category GetById(int id)
     {
-        return _dataContext.Category.SingleOrDefault(
-            category => category.id = id);
+        return _dataContext.Category.SingleOrDefault(category => category.Id == id);
     }
 
     public List<Category> GetAll()
@@ -25,30 +29,33 @@ public class CategoryRepository : ICategoryRepository
     public void Insert(Category entity)
     {
         _dataContext.Category.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Update(Category entity)
     {
         _dataContext.Category.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Delete(int id)
     {
         Category category = GetById(id);
         _dataContext.Category.Remove(category);
+        _dataContext.SaveChangesAsync();
     }
 
     public async Task<Category> GetByIdAsync(int id)
     {
         return await _dataContext
-            .DbSetCategory
+            .Category
             .FirstOrDefaultAsync(category => category.Id == id);
     }
 
     public async Task<IList<Category>> GetAllByIdAsync()
     {
         return await _dataContext
-            .DbSetCategory
+            .Category
             .ToListAsync();
     }
 }

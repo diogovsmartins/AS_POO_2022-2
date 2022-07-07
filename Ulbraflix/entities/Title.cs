@@ -1,11 +1,15 @@
-﻿namespace Ulbraflix.entities;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Ulbraflix.entities;
 
 public abstract class Title
 {
-    public int Id;
-    public string Name;
-    public string Sinopsis;
-    public bool IsWatched;
-    public List<Category> Categories;
-    public Rating Rating;
+    [Key] 
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Sinopsis { get; set; }
+    public bool IsWatched { get; set; }
+    public List<Category> Categories { get; set; }
+    public Rating Rating { get; set; }
 }

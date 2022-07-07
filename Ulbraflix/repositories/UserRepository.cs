@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Ulbraflix.data.context;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
@@ -11,9 +15,10 @@ public class UserRepository : IUserRepository
     {
         _dataContext = dataContext;
     }
+
     public User GetById(int id)
     {
-        return _dataContext.User.SingleOrDefault(user => user.id = id);
+        return _dataContext.User.SingleOrDefault(user => user.Id == id);
     }
 
     public List<User> GetAll()
@@ -24,16 +29,33 @@ public class UserRepository : IUserRepository
     public void Insert(User entity)
     {
         _dataContext.User.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Update(User entity)
     {
         _dataContext.User.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Delete(int id)
     {
         User user = GetById(id);
         _dataContext.User.Remove(user);
+        _dataContext.SaveChangesAsync();
+    }
+
+    public async Task<User> GetByIdAsync(int id)
+    {
+        return await _dataContext
+            .User
+            .FirstOrDefaultAsync(user => user.Id == id);
+    }
+
+    public async Task<IList<User>> GetAllByIdAsync()
+    {
+        return await _dataContext
+            .User
+            .ToListAsync();
     }
 }

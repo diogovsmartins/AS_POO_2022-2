@@ -1,4 +1,5 @@
-﻿using Ulbraflix.entities.enums;
+﻿using System.Collections.Generic;
+using Ulbraflix.entities.enums;
 
 namespace Ulbraflix.entities;
 
