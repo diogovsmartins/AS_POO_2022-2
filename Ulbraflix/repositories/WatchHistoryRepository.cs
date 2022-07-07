@@ -13,6 +13,7 @@ public class WatchHistoryRepository : IWatchHistoryRepository
     {
         _dataContext = dataContext;
     }
+
     public WatchHistory GetById(int id)
     {
         return _dataContext.WatchHistory.SingleOrDefault(watchHistory => watchHistory.Id == id);
@@ -23,58 +24,22 @@ public class WatchHistoryRepository : IWatchHistoryRepository
         return _dataContext.WatchHistory.ToList();
     }
 
-    public bool Insert(WatchHistory entity)
+    public void Insert(WatchHistory entity)
     {
-        if (entity.Equals(null) ||
-            entity.Titles.Count==0)
-            throw new ArgumentException();
-        bool success=true;
-        try
-        {        
-            _dataContext.WatchHistory.Add(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.WatchHistory.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Update(WatchHistory entity)
+    public void Update(WatchHistory entity)
     {
-        if (entity.Equals(null) ||
-            entity.Titles.Count==0)
-            throw new ArgumentException();
-        bool success=true;
-        try
-        {        
-            _dataContext.WatchHistory.Update(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.WatchHistory.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Delete(int id)
+    public void Delete(int id)
     {
-        bool success=true;
-        try
-        {
-            WatchHistory watchHistory = GetById(id);
-            _dataContext.WatchHistory.Remove(watchHistory);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        WatchHistory watchHistory = GetById(id);
+        _dataContext.WatchHistory.Remove(watchHistory);
+        _dataContext.SaveChangesAsync();
     }
 }

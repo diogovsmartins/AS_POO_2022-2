@@ -13,6 +13,7 @@ public class UserRepository : IUserRepository
     {
         _dataContext = dataContext;
     }
+
     public User GetById(int id)
     {
         return _dataContext.User.SingleOrDefault(user => user.Id == id);
@@ -23,61 +24,22 @@ public class UserRepository : IUserRepository
         return _dataContext.User.ToList();
     }
 
-    public bool Insert(User entity)
+    public void Insert(User entity)
     {
-        if (entity.Equals(null) ||
-            entity.Email.Equals(String.Empty) ||
-            entity.Password.Equals(String.Empty)) 
-            throw new ArgumentException();
-        bool success=true;
-        try
-        {
-            _dataContext.User.Add(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.User.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Update(User entity)
+    public void Update(User entity)
     {
-        
-        if (entity.Equals(null) ||
-            entity.Email.Equals(String.Empty) ||
-            entity.Password.Equals(String.Empty)) 
-            throw new ArgumentException();
-        bool success=true;
-        try
-        {        
-            _dataContext.User.Update(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.User.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Delete(int id)
+    public void Delete(int id)
     {
-        bool success=true;
-        try
-        {
-            User user = GetById(id);
-            _dataContext.User.Remove(user);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        User user = GetById(id);
+        _dataContext.User.Remove(user);
+        _dataContext.SaveChangesAsync();
     }
 }

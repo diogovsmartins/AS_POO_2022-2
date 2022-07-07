@@ -13,6 +13,7 @@ public class SerieRepository : ISerieRepository
     {
         _dataContext = dataContext;
     }
+
     public Serie GetById(int id)
     {
         return _dataContext.Serie.SingleOrDefault(serie => serie.Id == id);
@@ -23,60 +24,22 @@ public class SerieRepository : ISerieRepository
         return _dataContext.Serie.ToList();
     }
 
-    public bool Insert(Serie entity)
+    public void Insert(Serie entity)
     {
-        if (entity.Equals(null) ||
-            entity.Name.Equals(String.Empty) ||
-            entity.Sinopsis.Equals(String.Empty) ||
-            entity.Categories.Count==0) throw new ArgumentException();
-        bool success=true;
-        try
-        {
-            _dataContext.Serie.Add(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.Serie.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Update(Serie entity)
+    public void Update(Serie entity)
     {
-        if (entity.Equals(null) ||
-            entity.Name.Equals(String.Empty) ||
-            entity.Sinopsis.Equals(String.Empty) ||
-            entity.Categories.Count==0) throw new ArgumentException();
-        bool success=true;
-        try
-        {
-            _dataContext.Serie.Update(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.Serie.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Delete(int id)
+    public void Delete(int id)
     {
-        bool success=true;
-        try
-        {
-            Serie serie = GetById(id);
-            _dataContext.Serie.Remove(serie);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        Serie serie = GetById(id);
+        _dataContext.Serie.Remove(serie);
+        _dataContext.SaveChangesAsync();
     }
 }

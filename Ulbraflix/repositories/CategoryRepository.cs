@@ -14,6 +14,7 @@ public class CategoryRepository : ICategoryRepository
     {
         _dataContext = dataContext;
     }
+
     public Category GetById(int id)
     {
         return _dataContext.Category.SingleOrDefault(category => category.Id == id);
@@ -24,56 +25,22 @@ public class CategoryRepository : ICategoryRepository
         return _dataContext.Category.ToList();
     }
 
-    public bool Insert(Category entity)
+    public void Insert(Category entity)
     {
-        bool success=true;
-        if (entity.Equals(null) ||
-            entity.Name.Equals(String.Empty)) throw new ArgumentException();
-        try
-        {
-            _dataContext.Category.Add(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.Category.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Update(Category entity)
+    public void Update(Category entity)
     {
-        bool success=true;
-        if (entity.Equals(null) ||
-            entity.Name.Equals(String.Empty)) throw new ArgumentException();
-        try
-        {
-            _dataContext.Category.Update(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.Category.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Delete(int id)
+    public void Delete(int id)
     {
-        bool success=true;
-        try
-        {
-            Category category = GetById(id);
-            _dataContext.Category.Remove(category);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        Category category = GetById(id);
+        _dataContext.Category.Remove(category);
+        _dataContext.SaveChangesAsync();
     }
 }

@@ -13,7 +13,7 @@ public class SubscriptionRepository : ISubscriptionRepository
     {
         _dataContext = dataContext;
     }
-    
+
     public Subscription GetById(int id)
     {
         return _dataContext.Subscription.SingleOrDefault(subscription => subscription.Id == id);
@@ -24,63 +24,23 @@ public class SubscriptionRepository : ISubscriptionRepository
         return _dataContext.Subscription.ToList();
     }
 
-    public bool Insert(Subscription entity)
+    public void Insert(Subscription entity)
     {
-        if (entity.Equals(null) ||
-            entity.User.Equals(null) ||
-            entity.PaymentMethod.Equals(String.Empty) ||
-            entity.PaymentValue==0 ||
-            entity.SubscriptionType.Equals(null)) throw new ArgumentException();
-        bool success=true;
-        try
-        {
-            entity.IsActive = true;
-            _dataContext.Subscription.Add(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        entity.IsActive = true;
+        _dataContext.Subscription.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Update(Subscription entity)
+    public void Update(Subscription entity)
     {
-        if (entity.Equals(null) ||
-            entity.User.Equals(null) ||
-            entity.PaymentMethod.Equals(String.Empty) ||
-            entity.PaymentValue==0 ||
-            entity.SubscriptionType.Equals(null)) throw new ArgumentException();
-        bool success=true;
-        try
-        {
-            _dataContext.Subscription.Update(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.Subscription.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Delete(int id)
+    public void Delete(int id)
     {
-        bool success=true;
-        try
-        {
-            Subscription subscription = GetById(id);
-            _dataContext.Subscription.Remove(subscription);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        Subscription subscription = GetById(id);
+        _dataContext.Subscription.Remove(subscription);
+        _dataContext.SaveChangesAsync();
     }
 }

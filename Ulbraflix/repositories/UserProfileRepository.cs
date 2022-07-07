@@ -13,7 +13,7 @@ public class UserProfileRepository : IUserProfileRepository
     {
         _dataContext = dataContext;
     }
-    
+
     public UserProfile GetById(int id)
     {
         return _dataContext.UserProfile.SingleOrDefault(userProfile => userProfile.Id == id);
@@ -24,58 +24,22 @@ public class UserProfileRepository : IUserProfileRepository
         return _dataContext.UserProfile.ToList();
     }
 
-    public bool Insert(UserProfile entity)
+    public void Insert(UserProfile entity)
     {
-        if (entity.Equals(null) ||
-            entity.Name.Equals(String.Empty))
-            throw new ArgumentException();
-        bool success=true;
-        try
-        {
-            _dataContext.UserProfile.Add(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.UserProfile.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Update(UserProfile entity)
+    public void Update(UserProfile entity)
     {
-        if (entity.Equals(null) ||
-            entity.Name.Equals(String.Empty))
-            throw new ArgumentException();
-        bool success=true;
-        try
-        {
-            _dataContext.UserProfile.Update(entity);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        _dataContext.UserProfile.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
-    public bool Delete(int id)
+    public void Delete(int id)
     {
-        bool success=true;
-        try
-        {
-            UserProfile userProfile = GetById(id);
-            _dataContext.UserProfile.Remove(userProfile);
-            _dataContext.SaveChanges();
-            return success;
-        }
-        catch (Exception e )
-        {
-            success = false;
-        }
-        return success;
+        UserProfile userProfile = GetById(id);
+        _dataContext.UserProfile.Remove(userProfile);
+        _dataContext.SaveChangesAsync();
     }
 }
