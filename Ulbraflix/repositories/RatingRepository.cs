@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Ulbraflix.data.context;
 using Ulbraflix.entities;
@@ -28,16 +29,19 @@ public class RatingRepository : IRatingRepository
     public void Insert(Rating entity)
     {
         _dataContext.Rating.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Update(Rating entity)
     {
         _dataContext.Rating.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Delete(int id)
     {
-        var rating = GetById(id);
+        Rating rating = GetById(id);
         _dataContext.Rating.Remove(rating);
+        _dataContext.SaveChangesAsync();
     }
 }

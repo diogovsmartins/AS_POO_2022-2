@@ -1,4 +1,6 @@
-namespace Ulbraflix.repositories;
+using System.Collections.Generic;
+
+namespace Ulbraflix.repositories.interfaces;
 
 public interface IBaseRepository <Entity> where Entity : class
 {

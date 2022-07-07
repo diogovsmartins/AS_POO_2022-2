@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Ulbraflix.data.context;
 using Ulbraflix.entities;
@@ -13,6 +14,7 @@ public class WatchHistoryRepository : IWatchHistoryRepository
     {
         _dataContext = dataContext;
     }
+
     public WatchHistory GetById(int id)
     {
         return _dataContext.WatchHistory.SingleOrDefault(watchHistory => watchHistory.Id == id);
@@ -26,16 +28,19 @@ public class WatchHistoryRepository : IWatchHistoryRepository
     public void Insert(WatchHistory entity)
     {
         _dataContext.WatchHistory.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Update(WatchHistory entity)
     {
         _dataContext.WatchHistory.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Delete(int id)
     {
         WatchHistory watchHistory = GetById(id);
         _dataContext.WatchHistory.Remove(watchHistory);
+        _dataContext.SaveChangesAsync();
     }
 }

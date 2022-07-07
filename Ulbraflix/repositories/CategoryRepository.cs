@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
@@ -14,6 +15,7 @@ public class CategoryRepository : ICategoryRepository
     {
         _dataContext = dataContext;
     }
+
     public Category GetById(int id)
     {
         return _dataContext.Category.SingleOrDefault(category => category.Id == id);
@@ -27,16 +29,19 @@ public class CategoryRepository : ICategoryRepository
     public void Insert(Category entity)
     {
         _dataContext.Category.Add(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Update(Category entity)
     {
         _dataContext.Category.Update(entity);
+        _dataContext.SaveChangesAsync();
     }
 
     public void Delete(int id)
     {
         Category category = GetById(id);
         _dataContext.Category.Remove(category);
+        _dataContext.SaveChangesAsync();
     }
 }
