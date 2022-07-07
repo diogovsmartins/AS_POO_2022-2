@@ -2,5 +2,5 @@
 
 public class Serie : Title
 {
-    public Dictionary<int, SerieEpisode> SeriesEpisodes { get; set; }
+    public List<Season> Season { get; set; }
 }

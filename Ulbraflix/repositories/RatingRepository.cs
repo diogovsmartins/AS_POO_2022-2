@@ -1,3 +1,5 @@
+using System.Linq;
+using Ulbraflix.data.context;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
@@ -15,7 +17,7 @@ public class RatingRepository : IRatingRepository
 
     public Rating GetById(int id)
     {
-        return _dataContext.Rating.SingleOrDefault(rating => rating.id = id);
+        return _dataContext.Rating.SingleOrDefault(rating => rating.Id == id);
     }
 
     public List<Rating> GetAll()
