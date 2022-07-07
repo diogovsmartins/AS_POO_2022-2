@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Ulbraflix.data.context;
 using Ulbraflix.entities;
@@ -33,13 +34,13 @@ public class MovieRepository : IMovieRepository
     public void Update(Movie entity)
     {
         _dataContext.Movie.Update(entity);
-        _dataContext.SaveChanges();
+        _dataContext.SaveChangesAsync();
     }
 
     public void Delete(int id)
     {
         Movie movie = GetById(id);
         _dataContext.Movie.Remove(movie);
-        _dataContext.SaveChanges();
+        _dataContext.SaveChangesAsync();
     }
 }
