@@ -36,4 +36,18 @@ public class MovieRepository : IMovieRepository
         Movie movie = GetById(id);
         _dataContext.Movie.Remove(movie);
     }
+
+    public async Task<Movie> GetByIdAsync(int id)
+    {
+        return await _dataContext
+            .DbSetMovie
+            .FirstOrDefault(movie => movie.Id == id);
+    }
+
+    public async Task<IList<Movie>> GetAllByIdAsync()
+    {
+        return await _dataContext
+            .DbSetMovie
+            .ToListAsync();
+    }
 }

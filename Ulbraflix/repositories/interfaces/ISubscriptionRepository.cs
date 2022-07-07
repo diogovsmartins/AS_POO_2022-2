@@ -3,7 +3,7 @@ using Ulbraflix.entities;
 
 namespace Ulbraflix.repositories.interfaces;
 
-public interface ISubscriptionRepository : IBaseRepository<Subscription>
+public interface ISubscriptionRepository : IBaseRepository<Subscription>, IBaseAsyncRepository<Subscription>
 {
     
 }

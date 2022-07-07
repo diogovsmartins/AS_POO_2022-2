@@ -37,4 +37,18 @@ public class CategoryRepository : ICategoryRepository
         Category category = GetById(id);
         _dataContext.Category.Remove(category);
     }
+
+    public async Task<Category> GetByIdAsync(int id)
+    {
+        return await _dataContext
+            .DbSetCategory
+            .FirstOrDefaultAsync(category => category.Id == id);
+    }
+
+    public async Task<IList<Category>> GetAllByIdAsync()
+    {
+        return await _dataContext
+            .DbSetCategory
+            .ToListAsync();
+    }
 }
