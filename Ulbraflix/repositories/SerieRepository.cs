@@ -1,3 +1,5 @@
+using System.Linq;
+using Ulbraflix.data.context;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
@@ -13,7 +15,7 @@ public class SerieRepository : ISerieRepository
     }
     public Serie GetById(int id)
     {
-        return _dataContext.Serie.SingleOrDefault(serie => serie.id = id);
+        return _dataContext.Serie.SingleOrDefault(serie => serie.Id == id);
     }
 
     public List<Serie> GetAll()

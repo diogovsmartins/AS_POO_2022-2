@@ -1,3 +1,5 @@
+using System.Linq;
+using Ulbraflix.data.context;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
@@ -13,7 +15,7 @@ public class MovieRepository : IMovieRepository
     }
     public Movie GetById(int id)
     {
-        return _dataContext.Movie.SingleOrDefault(movie => movie.id = id);
+        return _dataContext.Movie.SingleOrDefault(movie => movie.Id == id);
     }
 
     public List<Movie> GetAll()

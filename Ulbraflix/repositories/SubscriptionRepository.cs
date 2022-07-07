@@ -1,3 +1,5 @@
+using System.Linq;
+using Ulbraflix.data.context;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
@@ -14,7 +16,7 @@ public class SubscriptionRepository : ISubscriptionRepository
     
     public Subscription GetById(int id)
     {
-        return _dataContext.Subscription.SingleOrDefault(subscription => subscription.id = id);
+        return _dataContext.Subscription.SingleOrDefault(subscription => subscription.Id == id);
     }
 
     public List<Subscription> GetAll()
