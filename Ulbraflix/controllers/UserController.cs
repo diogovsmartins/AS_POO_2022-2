@@ -103,14 +103,11 @@ public class UserController : ControllerBase
         [HttpDelete("/delete/{id}")]
         public IActionResult DeleteUser(int id)
         {
-            _userService.Delete(id);
-            return Ok();
+            if(_userService.Delete(id))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
-        
-        
-
-
-
-
     }
 }
