@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
 using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
@@ -18,12 +19,20 @@ public class MovieRepository : IMovieRepository
 
     public Movie GetById(int id)
     {
-        return _dataContext.Movie.SingleOrDefault(movie => movie.Id == id);
+        return _dataContext
+            .Movie
+            .Include(movie => movie.Categories)
+            .Include(movie => movie.Rating)
+            .SingleOrDefault(movie => movie.Id == id);
     }
 
     public List<Movie> GetAll()
     {
-        return _dataContext.Movie.ToList();
+        return _dataContext
+            .Movie
+            .Include(movie => movie.Categories)
+            .Include(movie => movie.Rating)
+            .ToList();
     }
 
     public void Insert(Movie entity)
@@ -43,5 +52,23 @@ public class MovieRepository : IMovieRepository
         Movie movie = GetById(id);
         _dataContext.Movie.Remove(movie);
         _dataContext.SaveChangesAsync();
+    }
+
+    public async Task<Movie> GetByIdAsync(int id)
+    {
+        return await _dataContext
+            .Movie
+            .Include(movie => movie.Categories)
+            .Include(movie => movie.Rating)
+            .FirstOrDefaultAsync(movie => movie.Id == id);
+    }
+
+    public async Task<IList<Movie>> GetAllAsync()
+    {
+        return await _dataContext
+            .Movie
+            .Include(movie => movie.Categories)
+            .Include(movie => movie.Rating)
+            .ToListAsync();
     }
 }

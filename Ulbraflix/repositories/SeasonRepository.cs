@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
 using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
@@ -18,12 +19,18 @@ public class SeasonRepository : ISeasonRepository
 
     public Season GetById(int id)
     {
-        return _dataContext.Season.SingleOrDefault(season => season.Id == id);
+        return _dataContext
+            .Season
+            .Include(season => season.Episode)
+            .SingleOrDefault(season => season.Id == id);
     }
 
     public List<Season> GetAll()
     {
-        return _dataContext.Season.ToList();
+        return _dataContext
+            .Season
+            .Include(season => season.Episode)
+            .ToList();
     }
 
     public void Insert(Season entity)
@@ -43,5 +50,21 @@ public class SeasonRepository : ISeasonRepository
         Season season = GetById(id);
         _dataContext.Season.Remove(season);
         _dataContext.SaveChangesAsync();
+    }
+
+    public async Task<Season> GetByIdAsync(int id)
+    {
+        return await _dataContext
+            .Season
+            .Include(season => season.Episode)
+            .FirstOrDefaultAsync(season => season.Id == id);
+    }
+
+    public async Task<IList<Season>> GetAllAsync()
+    {
+        return await _dataContext
+            .Season
+            .Include(season => season.Episode)
+            .ToListAsync();
     }
 }

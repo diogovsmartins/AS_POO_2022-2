@@ -1,5 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
+
+using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
 using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
@@ -18,17 +18,25 @@ public class UserProfileRepository : IUserProfileRepository
 
     public UserProfile GetById(int id)
     {
-        return _dataContext.UserProfile.SingleOrDefault(userProfile => userProfile.Id == id);
+        return _dataContext
+            .UserProfile
+            .Include(userProfile => userProfile.WatchHistory)
+            .SingleOrDefault(userProfile => userProfile.Id == id);
     }
 
     public List<UserProfile> GetAll()
     {
-        return _dataContext.UserProfile.ToList();
+        return _dataContext
+            .UserProfile
+            .Include(userProfile => userProfile.WatchHistory)
+            .ToList();
     }
 
     public void Insert(UserProfile entity)
     {
-        _dataContext.UserProfile.Add(entity);
+        _dataContext
+            .UserProfile
+            .Add(entity);
         _dataContext.SaveChangesAsync();
     }
 
@@ -43,5 +51,21 @@ public class UserProfileRepository : IUserProfileRepository
         UserProfile userProfile = GetById(id);
         _dataContext.UserProfile.Remove(userProfile);
         _dataContext.SaveChangesAsync();
+    }
+
+    public async Task<UserProfile> GetByIdAsync(int id)
+    {
+        return await _dataContext
+            .UserProfile
+            .Include(userProfile => userProfile.WatchHistory)
+            .FirstOrDefaultAsync(userProfile => userProfile.Id == id);
+    }
+
+    public async Task<IList<UserProfile>> GetAllAsync()
+    {
+        return await _dataContext
+            .UserProfile
+            .Include(userProfile => userProfile.WatchHistory)
+            .ToListAsync();
     }
 }

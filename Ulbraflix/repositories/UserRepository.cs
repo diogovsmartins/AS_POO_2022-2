@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
 using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
@@ -43,5 +44,19 @@ public class UserRepository : IUserRepository
         User user = GetById(id);
         _dataContext.User.Remove(user);
         _dataContext.SaveChangesAsync();
+    }
+
+    public async Task<User> GetByIdAsync(int id)
+    {
+        return await _dataContext
+            .User
+            .FirstOrDefaultAsync(user => user.Id == id);
+    }
+
+    public async Task<IList<User>> GetAllAsync()
+    {
+        return await _dataContext
+            .User
+            .ToListAsync();
     }
 }

@@ -4,7 +4,7 @@ using Ulbraflix.entities;
 
 namespace Ulbraflix.repositories.interfaces;
 
-public interface IUserRepository : IBaseRepository<User>
+public interface IUserRepository : IBaseRepository<User>, IBaseAsyncRepository<User>
 {
     
 }
