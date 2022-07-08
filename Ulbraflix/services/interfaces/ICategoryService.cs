@@ -1,4 +1,5 @@
 using System.Collections;
+using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
 
 namespace Ulbraflix.services.interfaces;

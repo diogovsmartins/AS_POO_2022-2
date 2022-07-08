@@ -1,4 +1,5 @@
-﻿using Ulbraflix.entities;
+﻿using Ulbraflix.domain.entities;
+using Ulbraflix.entities;
 
 namespace Ulbraflix.services.interfaces;
 

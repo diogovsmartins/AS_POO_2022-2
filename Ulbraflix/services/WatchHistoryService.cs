@@ -1,3 +1,4 @@
+using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 using Ulbraflix.services.interfaces;
