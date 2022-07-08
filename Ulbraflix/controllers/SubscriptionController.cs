@@ -22,15 +22,15 @@ public class SubscriptionController : ControllerBase
         public async Task<IActionResult> GetById(int id)
         {
           Subscription Subscription=_subscriptionService.GetById(id);
-          SubscriptionRecord SubscriptionRecord = new SubscriptionRecord(
-              Subscription.SubscriptionType, 
-              Subscription.IsActive, 
-              Subscription.PaymentMethod,
-              Subscription.Id,
-              Subscription.User,
-              Subscription.UsersProfiles
-          );
-          return Ok(SubscriptionRecord);
+          SubscriptionRecordVO SubscriptionRecordVO = new SubscriptionRecordVO(
+                Subscription.SubscriptionType,
+                Subscription.IsActive,
+                Subscription.PaymentMethod,
+                Subscription.PaymentValue,
+                Subscription.User,
+                Subscription.UsersProfiles
+              );
+          return Ok(SubscriptionRecordVO);
         }
 
 
@@ -38,27 +38,27 @@ public class SubscriptionController : ControllerBase
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             Subscription Subscription=await _subscriptionService.GetByIdAsync(id);
-            SubscriptionRecord SubscriptionRecordVo = new SubscriptionRecord(
+            SubscriptionRecordVO SubscriptionRecordVO = new SubscriptionRecordVO(
                 Subscription.SubscriptionType, 
                 Subscription.IsActive, 
                 Subscription.PaymentMethod,
-                Subscription.Id,
+                Subscription.PaymentValue,
                 Subscription.User,
                 Subscription.UsersProfiles
             );
-            return Ok(SubscriptionRecordVo);
+            return Ok(SubscriptionRecordVO);
         }
         
         
-        [HttpGet("/async/")]
+        [HttpGet("/async")]
         public async Task<IActionResult> GetAllAsync()
         {
             List<Subscription> Subscriptions = new List<Subscription>();
             Subscriptions.AddRange(await _subscriptionService.GetAllAsync());
-            List<SubscriptionRecord> SubscriptionRecords = new List<SubscriptionRecord>();
+            List<SubscriptionRecordVO> SubscriptionRecords = new List<SubscriptionRecordVO>();
             Subscriptions.ForEach(Subscription =>
             {
-                SubscriptionRecord SubscriptionRecordVo = new SubscriptionRecord(
+                SubscriptionRecordVO SubscriptionRecordVo = new SubscriptionRecordVO(
                     Subscription.SubscriptionType, 
                     Subscription.IsActive, 
                     Subscription.PaymentMethod,
@@ -76,10 +76,10 @@ public class SubscriptionController : ControllerBase
         {
             List<Subscription> Subscriptions = new List<Subscription>();
             Subscriptions.AddRange(_subscriptionService.GetAll());
-            List<SubscriptionRecord> SubscriptionRecords = new List<SubscriptionRecord>();
+            List<SubscriptionRecordVO> SubscriptionRecords = new List<SubscriptionRecordVO>();
             Subscriptions.ForEach(Subscription =>
             {
-                SubscriptionRecord SubscriptionRecord = new SubscriptionRecord(
+                SubscriptionRecordVO SubscriptionRecord = new SubscriptionRecordVO(
                     Subscription.SubscriptionType, 
                     Subscription.IsActive, 
                     Subscription.PaymentMethod,
@@ -94,18 +94,19 @@ public class SubscriptionController : ControllerBase
         [HttpPost ("/insert")]
         public IActionResult InsertSubscription([FromBody] SubscriptionRecord SubscriptionRecord)
         {
-            if (SubscriptionRecord.Equals(null))
-            return new BadRequestResult();
-            
-            Subscription Subscription = new Subscription();
-            Subscription.SubscriptionType = SubscriptionRecord.SubscriptionEnum;
-            Subscription.IsActive = SubscriptionRecord.IsActive;
-            Subscription.PaymentMethod = SubscriptionRecord.PaymentMethod;
-            Subscription.PaymentValue = SubscriptionRecord.PaymentValue;
-            Subscription.User = SubscriptionRecord.User;
-            Subscription.UsersProfiles = SubscriptionRecord.UserProfiles;
             try
             {
+                if (SubscriptionRecord.Equals(null))
+                return new BadRequestResult();
+                
+                Subscription Subscription = new Subscription();
+                Subscription.SubscriptionType = SubscriptionRecord.SubscriptionEnum;
+                Subscription.IsActive = SubscriptionRecord.IsActive;
+                Subscription.PaymentMethod = SubscriptionRecord.PaymentMethod;
+                Subscription.PaymentValue = SubscriptionRecord.PaymentValue;
+                Subscription.User = SubscriptionRecord.User;
+                Subscription.UsersProfiles = SubscriptionRecord.UserProfiles;
+            
                 if (_subscriptionService.Insert(Subscription))
                 {
                     return Ok("Successfully deleted");
@@ -121,18 +122,20 @@ public class SubscriptionController : ControllerBase
         [HttpPut("/update")]
         public IActionResult UpdateSubscription([FromBody] SubscriptionRecord SubscriptionRecord)
         {
-            if (SubscriptionRecord.Equals(null))
-                return new BadRequestResult();
-            
-            Subscription Subscription = new Subscription();
-            Subscription.SubscriptionType = SubscriptionRecord.SubscriptionEnum;
-            Subscription.IsActive = SubscriptionRecord.IsActive;
-            Subscription.PaymentMethod = SubscriptionRecord.PaymentMethod;
-            Subscription.PaymentValue = SubscriptionRecord.PaymentValue;
-            Subscription.User = SubscriptionRecord.User;
-            Subscription.UsersProfiles = SubscriptionRecord.UserProfiles;
             try
             {
+                if (SubscriptionRecord.Equals(null))
+                    return new BadRequestResult();
+                
+                Subscription Subscription = new Subscription();
+                Subscription.Id = SubscriptionRecord.Id;
+                Subscription.SubscriptionType = SubscriptionRecord.SubscriptionEnum;
+                Subscription.IsActive = SubscriptionRecord.IsActive;
+                Subscription.PaymentMethod = SubscriptionRecord.PaymentMethod;
+                Subscription.PaymentValue = SubscriptionRecord.PaymentValue;
+                Subscription.User = SubscriptionRecord.User;
+                Subscription.UsersProfiles = SubscriptionRecord.UserProfiles;
+            
                 if (_subscriptionService.Update(Subscription))
                 {
                     return Ok("Successfully deleted");

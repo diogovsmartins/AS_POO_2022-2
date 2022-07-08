@@ -3,11 +3,11 @@ using Ulbraflix.domain.entities;
 
 namespace Ulbraflix.domain.DTOs_e_VOs;
 
-public record SerieRecord(
-    int Id,
+public record MovieRecordVO(
     string Name,
     string Sinopsis,
     bool IsWatched,
     List<Category> Categories,
     Rating Rating,
-    List<Season> Seasons);
+    int Duration,
+    int LastMinuteWatched);

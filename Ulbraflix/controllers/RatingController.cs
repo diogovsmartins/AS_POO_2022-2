@@ -22,7 +22,7 @@ public class RatingController : ControllerBase
         public async Task<IActionResult> GetById(int id)
         {
           Rating rating=_ratingService.GetById(id);
-          RatingRecord ratingRecord = new RatingRecord(rating.RatingValue);
+          RatingRecordVO ratingRecord = new RatingRecordVO(rating.RatingValue);
           return Ok(ratingRecord);
         }
 
@@ -31,7 +31,7 @@ public class RatingController : ControllerBase
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             Rating rating=await _ratingService.GetByIdAsync(id);
-            RatingRecord ratingRecord = new RatingRecord(rating.RatingValue);
+            RatingRecordVO ratingRecord = new RatingRecordVO(rating.RatingValue);
             return Ok(ratingRecord);
         }
         
@@ -41,11 +41,11 @@ public class RatingController : ControllerBase
         {
             List<Rating> ratings = new List<Rating>();
             ratings.AddRange(await _ratingService.GetAllAsync());
-            List<RatingRecord> ratingRecords = new List<RatingRecord>();
+            List<RatingRecordVO> ratingRecords = new List<RatingRecordVO>();
             ratings.ForEach(rating =>
             {
-                RatingRecord ratingRecordVo = new RatingRecord(rating.RatingValue);
-                ratingRecords.Add(ratingRecordVo);
+                RatingRecordVO ratingRecordVO = new RatingRecordVO(rating.RatingValue);
+                ratingRecords.Add(ratingRecordVO);
             });
             return Ok(ratingRecords);
         }
@@ -55,24 +55,25 @@ public class RatingController : ControllerBase
         {
             List<Rating> ratings = new List<Rating>();
             ratings.AddRange(_ratingService.GetAll());
-            List<RatingRecord> ratingRecordVos = new List<RatingRecord>();
+            List<RatingRecordVO> ratingRecordVOs = new List<RatingRecordVO>();
             ratings.ForEach(rating =>
             {
-                RatingRecord ratingRecord = new RatingRecord(rating.RatingValue);
-                ratingRecordVos.Add(ratingRecord);
+                RatingRecordVO ratingRecord = new RatingRecordVO(rating.RatingValue);
+                ratingRecordVOs.Add(ratingRecord);
             });
-            return Ok(ratingRecordVos);
+            return Ok(ratingRecordVOs);
         }
 
         [HttpPost ("/insert")]
         public IActionResult InsertRating([FromBody] RatingRecord ratingRecord)
         {
-            if (ratingRecord.Equals(null))
-                return new BadRequestResult();
-            Rating rating = new Rating();
-            rating.RatingValue = ratingRecord.RatingValue;
             try
             {
+                if (ratingRecord.Equals(null))
+                    return new BadRequestResult();
+                Rating rating = new Rating();
+                rating.RatingValue = ratingRecord.RatingValue;
+            
                 if (_ratingService.Insert(rating))
                 {
                     return Ok("Successfully inserted");
@@ -88,13 +89,15 @@ public class RatingController : ControllerBase
         [HttpPut("/update")]
         public IActionResult UpdateRating([FromBody] RatingRecord ratingRecord)
         {
-            if (ratingRecord.Equals(null))
-                return new BadRequestResult();
-            
-            Rating rating = new Rating();
-            rating.RatingValue = ratingRecord.RatingValue;
             try
             {
+                if (ratingRecord.Equals(null))
+                    return new BadRequestResult();
+                
+                Rating rating = new Rating();
+                rating.Id = ratingRecord.Id;
+                rating.RatingValue = ratingRecord.RatingValue;
+            
                 if (_ratingService.Update(rating))
                 {
                     return Ok("Successfully updated");

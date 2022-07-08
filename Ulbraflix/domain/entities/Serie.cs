@@ -5,5 +5,5 @@ namespace Ulbraflix.domain.entities;
 
 public class Serie : Title
 {
-    public List<Season> Season { get; set; }
+    public List<Season> Seasons { get; set; }
 }

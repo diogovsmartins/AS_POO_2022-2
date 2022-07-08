@@ -21,7 +21,7 @@ public class SerieRepository : ISerieRepository
     {
         return _dataContext
             .Serie
-            .Include(serie => serie.Season)
+            .Include(serie => serie.Seasons)
             .Include(serie => serie.Categories)
             .Include(serie => serie.Rating)
             .SingleOrDefault(serie => serie.Id == id);
@@ -31,7 +31,7 @@ public class SerieRepository : ISerieRepository
     {
         return _dataContext
             .Serie
-            .Include(serie => serie.Season)
+            .Include(serie => serie.Seasons)
             .Include(serie => serie.Categories)
             .Include(serie => serie.Rating)
             .ToList();
@@ -59,7 +59,7 @@ public class SerieRepository : ISerieRepository
     {
         return await _dataContext
             .Serie
-            .Include(serie => serie.Season)
+            .Include(serie => serie.Seasons)
             .Include(serie => serie.Categories)
             .Include(serie => serie.Rating)
             .FirstOrDefaultAsync(serie => serie.Id == id);
@@ -69,7 +69,7 @@ public class SerieRepository : ISerieRepository
     {
         return await _dataContext
             .Serie
-            .Include(serie => serie.Season)
+            .Include(serie => serie.Seasons)
             .Include(serie => serie.Categories)
             .Include(serie => serie.Rating)
             .ToListAsync();

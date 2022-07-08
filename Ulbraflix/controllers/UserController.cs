@@ -96,9 +96,9 @@ public class UserController : ControllerBase
                 return new BadRequestResult();
             
             User user = new User();
+            user.Id = userRecord.Id;
             user.Email = userRecord.Email;
             user.Password = userRecord.Password;
-
             try
             {
                 if (_userService.Update(user))

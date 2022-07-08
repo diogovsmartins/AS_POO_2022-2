@@ -99,6 +99,7 @@ public class EpisodeController : ControllerBase
             }
 
             Episode episode = new Episode();
+            episode.Id = episodeRecord.Id;
             episode.Duration = episodeRecord.Duration;
             episode.Sinopsis = episodeRecord.Sinopsis;
             episode.LastMinuteWatched = episodeRecord.LastMinuteWatched;

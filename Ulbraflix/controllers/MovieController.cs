@@ -19,8 +19,8 @@ public class MovieController : ControllerBase
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-          Movie Movie=_movieService.GetById(id);
-          MovieRecord MovieRecord = new MovieRecord(
+          Movie Movie = _movieService.GetById(id);
+          MovieRecordVO MovieRecord = new MovieRecordVO(
               Movie.Name, 
               Movie.Sinopsis, 
               Movie.IsWatched,
@@ -36,8 +36,8 @@ public class MovieController : ControllerBase
         [HttpGet("/async/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
-            Movie Movie=await _movieService.GetByIdAsync(id);
-            MovieRecord MovieRecordVo = new MovieRecord(
+            Movie Movie = await _movieService.GetByIdAsync(id);
+            MovieRecordVO MovieRecordVo = new MovieRecordVO(
                 Movie.Name, 
                 Movie.Sinopsis, 
                 Movie.IsWatched,
@@ -55,10 +55,10 @@ public class MovieController : ControllerBase
         {
             List<Movie> Movies = new List<Movie>();
             Movies.AddRange(await _movieService.GetAllAsync());
-            List<MovieRecord> MovieRecordVos = new List<MovieRecord>();
+            List<MovieRecordVO> MovieRecordVos = new List<MovieRecordVO>();
             Movies.ForEach(Movie =>
             {
-                MovieRecord MovieRecordVo = new MovieRecord(
+                MovieRecordVO MovieRecordVo = new MovieRecordVO(
                     Movie.Name, 
                     Movie.Sinopsis, 
                     Movie.IsWatched,
@@ -77,10 +77,10 @@ public class MovieController : ControllerBase
         {
             List<Movie> Movies = new List<Movie>();
             Movies.AddRange(_movieService.GetAll());
-            List<MovieRecord> MovieRecords = new List<MovieRecord>();
+            List<MovieRecordVO> MovieRecords = new List<MovieRecordVO>();
             Movies.ForEach(Movie =>
             {
-                MovieRecord MovieRecord = new MovieRecord(
+                MovieRecordVO MovieRecord = new MovieRecordVO(
                     Movie.Name, 
                     Movie.Sinopsis, 
                     Movie.IsWatched,
@@ -97,45 +97,75 @@ public class MovieController : ControllerBase
         [HttpPost ("/insert")]
         public IActionResult InsertMovie([FromBody] MovieRecord MovieRecord)
         {
-            if (MovieRecord.Equals(null))
-            return new BadRequestResult();
+            try
+            {
+                if (MovieRecord.Equals(null))
+                return new BadRequestResult();
+                
+                Movie Movie = new Movie();
+                Movie.Name = MovieRecord.Name;
+                Movie.Sinopsis = MovieRecord.Sinopsis;
+                Movie.IsWatched = MovieRecord.IsWatched;
+                Movie.Categories = MovieRecord.Categories;
+                Movie.Rating = MovieRecord.Rating;
+                Movie.Duration = MovieRecord.Duration;
+                Movie.LastMinuteWatched = MovieRecord.LastMinuteWatched;
             
-            Movie Movie = new Movie();
-            Movie.Name = MovieRecord.Name;
-            Movie.Sinopsis = MovieRecord.Sinopsis;
-            Movie.IsWatched = MovieRecord.IsWatched;
-            Movie.Categories = MovieRecord.Categories;
-            Movie.Rating = MovieRecord.Rating;
-            Movie.Duration = MovieRecord.Duration;
-            Movie.LastMinuteWatched = MovieRecord.LastMinuteWatched;
-            return Ok();
+                if (_movieService.Insert(Movie))
+                {
+                    return Ok("Successfully inserted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }   
         
-        [HttpPut("/update/{id}")]
-        public IActionResult UpdateMovie([FromBody] MovieRecord MovieRecord, int id)
+        [HttpPut("/update")]
+        public IActionResult UpdateMovie([FromBody] MovieRecord MovieRecord)
         {
-            if (MovieRecord.Equals(null))
-                return new BadRequestResult();
+            try
+            {
+                if (MovieRecord.Equals(null))
+                    return new BadRequestResult();
+                
+                Movie Movie = new Movie();
+                Movie.Id = MovieRecord.Id;
+                Movie.Name = MovieRecord.Name;
+                Movie.Sinopsis = MovieRecord.Sinopsis;
+                Movie.IsWatched = MovieRecord.IsWatched;
+                Movie.Categories = MovieRecord.Categories;
+                Movie.Rating = MovieRecord.Rating;
+                Movie.Duration = MovieRecord.Duration;
+                Movie.LastMinuteWatched = MovieRecord.LastMinuteWatched;
             
-            Movie Movie = new Movie();
-            Movie.Name = MovieRecord.Name;
-            Movie.Sinopsis = MovieRecord.Sinopsis;
-            Movie.IsWatched = MovieRecord.IsWatched;
-            Movie.Categories = MovieRecord.Categories;
-            Movie.Rating = MovieRecord.Rating;
-            Movie.Duration = MovieRecord.Duration;
-            Movie.LastMinuteWatched = MovieRecord.LastMinuteWatched;
-            _movieService.Update(Movie);
-            return Ok();
+                if (_movieService.Update(Movie))
+                {
+                    return Ok("Successfully updated");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }
         
         [HttpDelete("/delete/{id}")]
         public IActionResult DeleteMovie(int id)
         {
-            
-            if (_movieService.Delete(id))
+            try
             {
-                return Ok();   
+                if (_movieService.Delete(id))
+                {
+                    return Ok("Successfully deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
             }
             return BadRequest();
         }

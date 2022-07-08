@@ -4,8 +4,7 @@ using Ulbraflix.entities.enums;
 
 namespace Ulbraflix.domain.DTOs_e_VOs;
 
-public record SubscriptionRecord(
-    int Id,
+public record SubscriptionRecordVO(
     SubscriptionEnum SubscriptionEnum,
     bool IsActive,
     string PaymentMethod,

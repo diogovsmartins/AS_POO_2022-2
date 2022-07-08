@@ -3,8 +3,7 @@ using Ulbraflix.domain.entities;
 
 namespace Ulbraflix.domain.DTOs_e_VOs;
 
-public record SerieRecord(
-    int Id,
+public record SerieRecordVO(
     string Name,
     string Sinopsis,
     bool IsWatched,

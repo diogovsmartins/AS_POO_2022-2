@@ -20,7 +20,7 @@ namespace Ulbraflix.controllers
         public async Task<IActionResult> GetById(int id)
         {
           Category category=_categoryService.GetById(id);
-          CategoryRecord categoryRecord = new CategoryRecord(category.Name);
+          CategoryRecordVO categoryRecord = new CategoryRecordVO(category.Name);
           return Ok(categoryRecord);
         }
 
@@ -29,7 +29,7 @@ namespace Ulbraflix.controllers
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             Category category=await _categoryService.GetByIdAsync(id);
-            CategoryRecord categoryRecord = new CategoryRecord(category.Name);
+            CategoryRecordVO categoryRecord = new CategoryRecordVO(category.Name);
             return Ok(categoryRecord);
         }
         
@@ -39,10 +39,10 @@ namespace Ulbraflix.controllers
         {
             List<Category> categories = new List<Category>();
             categories.AddRange(await _categoryService.GetAllAsync());
-            List<CategoryRecord> categoryRecords = new List<CategoryRecord>();
+            List<CategoryRecordVO> categoryRecords = new List<CategoryRecordVO>();
             categories.ForEach(category =>
             {
-                CategoryRecord categoryRecord = new CategoryRecord(category.Name);
+                CategoryRecordVO categoryRecord = new CategoryRecordVO(category.Name);
                 categoryRecords.Add(categoryRecord);
             });
             return Ok(categoryRecords);
@@ -53,10 +53,10 @@ namespace Ulbraflix.controllers
         {
             List<Category> categories = new List<Category>();
             categories.AddRange(_categoryService.GetAll());
-            List<CategoryRecord> categoryRecords = new List<CategoryRecord>();
+            List<CategoryRecordVO> categoryRecords = new List<CategoryRecordVO>();
             categories.ForEach(category =>
             {
-                CategoryRecord categoryRecord = new CategoryRecord(category.Name);
+                CategoryRecordVO categoryRecord = new CategoryRecordVO(category.Name);
                 categoryRecords.Add(categoryRecord);
             });
             return Ok(categoryRecords);
@@ -65,34 +65,66 @@ namespace Ulbraflix.controllers
         [HttpPost ("/insert")]
         public IActionResult InsertCategory([FromBody] CategoryRecord categoryRecord)
         {
-            if (categoryRecord.Equals(null) ||
-                categoryRecord.Name.Equals(""))
-                return new BadRequestResult();
-            
-            Category category = new Category();
-            category.Name = categoryRecord.Name;
-            _categoryService.Insert(category);
-            return Ok();
+            try
+            {
+                if (categoryRecord.Equals(null) ||
+                    categoryRecord.Name.Equals(""))
+                    return new BadRequestResult();
+
+                Category category = new Category();
+                category.Name = categoryRecord.Name;
+                if (_categoryService.Insert(category))
+                {
+                    return Ok("Successfully inserted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }
         
-        [HttpPut("/update/{id}")]
+        [HttpPut("/update")]
         public IActionResult UpdateCategory([FromBody] CategoryRecord categoryRecord)
         {
-            if (categoryRecord.Equals(null) ||
-                categoryRecord.Name.Equals(""))
-                return new BadRequestResult();
-            
-            Category category = new Category();
-            category.Name = categoryRecord.Name;
-            _categoryService.Update(category);
-            return Ok();
+            try
+            {
+                if (categoryRecord.Equals(null) ||
+                    categoryRecord.Id.Equals(null) ||
+                    categoryRecord.Name.Equals(""))
+                    return new BadRequestResult();
+
+                Category category = new Category();
+                category.Id = categoryRecord.Id;
+                category.Name = categoryRecord.Name;
+                if (_categoryService.Update(category))
+                {
+                    return Ok("Successfully updated");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }
         
         [HttpDelete("/delete/{id}")]
         public IActionResult DeleteCategory(int id)
         {
-            _categoryService.Delete(id);
-            return Ok();
+            try
+            {
+                if (_categoryService.Delete(id))
+                {
+                    return Ok("Successfully deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }
     }
 }

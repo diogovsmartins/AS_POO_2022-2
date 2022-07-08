@@ -19,8 +19,8 @@ public class UserProfileController : ControllerBase
         public async Task<IActionResult> GetById(int id)
         {
           UserProfile userProfile=_userProfileService.GetById(id);
-          UserProfileRecord userProfileRecord =
-              new UserProfileRecord(userProfile.Name, userProfile.WatchHistory);
+          UserProfileRecordVO userProfileRecord =
+              new UserProfileRecordVO(userProfile.Name, userProfile.WatchHistory);
           return Ok(userProfileRecord);
         }
 
@@ -29,7 +29,7 @@ public class UserProfileController : ControllerBase
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             UserProfile userProfile=await _userProfileService.GetByIdAsync(id);
-            UserProfileRecord userProfileRecord = new UserProfileRecord(userProfile.Name, userProfile.WatchHistory);
+            UserProfileRecordVO userProfileRecord = new UserProfileRecordVO(userProfile.Name, userProfile.WatchHistory);
             return Ok(userProfileRecord);
         }
         
@@ -39,10 +39,10 @@ public class UserProfileController : ControllerBase
         {
             List<UserProfile> userProfiles = new List<UserProfile>();
             userProfiles.AddRange(await _userProfileService.GetAllAsync());
-            List<UserProfileRecord> userProfileRecords = new List<UserProfileRecord>();
+            List<UserProfileRecordVO> userProfileRecords = new List<UserProfileRecordVO>();
             userProfiles.ForEach(userProfile =>
             {
-                UserProfileRecord userProfileRecord = new UserProfileRecord(userProfile.Name, userProfile.WatchHistory);
+                UserProfileRecordVO userProfileRecord = new UserProfileRecordVO(userProfile.Name, userProfile.WatchHistory);
                 userProfileRecords.Add(userProfileRecord);
             });
             return Ok(userProfileRecords);
@@ -53,10 +53,10 @@ public class UserProfileController : ControllerBase
         {
             List<UserProfile> userProfiles = new List<UserProfile>();
             userProfiles.AddRange( _userProfileService.GetAll());
-            List<UserProfileRecord> userProfileRecords = new List<UserProfileRecord>();
+            List<UserProfileRecordVO> userProfileRecords = new List<UserProfileRecordVO>();
             userProfiles.ForEach(userProfile =>
             {
-                UserProfileRecord userProfileRecord = new UserProfileRecord(userProfile.Name, userProfile.WatchHistory);
+                UserProfileRecordVO userProfileRecord = new UserProfileRecordVO(userProfile.Name, userProfile.WatchHistory);
                 userProfileRecords.Add(userProfileRecord);
             });
             return Ok(userProfileRecords);
@@ -91,6 +91,7 @@ public class UserProfileController : ControllerBase
                 return new BadRequestResult();
             
             UserProfile userProfile = new UserProfile();
+            userProfile.Id = userProfileRecord.Id;
             userProfile.Name = userProfileRecord.Name;
             userProfile.WatchHistory = userProfileRecord.WatchHistory;
             try

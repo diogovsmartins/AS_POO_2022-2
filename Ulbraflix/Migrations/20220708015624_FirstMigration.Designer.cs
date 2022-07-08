@@ -101,7 +101,7 @@ namespace Ulbraflix.Migrations
                     b.ToTable("rating", (string)null);
                 });
 
-            modelBuilder.Entity("Ulbraflix.domain.entities.Season", b =>
+            modelBuilder.Entity("Ulbraflix.domain.entities.Seasons", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -299,15 +299,15 @@ namespace Ulbraflix.Migrations
 
             modelBuilder.Entity("Ulbraflix.domain.entities.Episode", b =>
                 {
-                    b.HasOne("Ulbraflix.domain.entities.Season", null)
+                    b.HasOne("Ulbraflix.domain.entities.Seasons", null)
                         .WithMany("Episode")
                         .HasForeignKey("SeasonId");
                 });
 
-            modelBuilder.Entity("Ulbraflix.domain.entities.Season", b =>
+            modelBuilder.Entity("Ulbraflix.domain.entities.Seasons", b =>
                 {
                     b.HasOne("Ulbraflix.domain.entities.Serie", null)
-                        .WithMany("Season")
+                        .WithMany("Seasons")
                         .HasForeignKey("SerieId");
                 });
 
@@ -370,7 +370,7 @@ namespace Ulbraflix.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Ulbraflix.domain.entities.Season", b =>
+            modelBuilder.Entity("Ulbraflix.domain.entities.Seasons", b =>
                 {
                     b.Navigation("Episode");
                 });
@@ -392,7 +392,7 @@ namespace Ulbraflix.Migrations
 
             modelBuilder.Entity("Ulbraflix.domain.entities.Serie", b =>
                 {
-                    b.Navigation("Season");
+                    b.Navigation("Seasons");
                 });
 #pragma warning restore 612, 618
         }
