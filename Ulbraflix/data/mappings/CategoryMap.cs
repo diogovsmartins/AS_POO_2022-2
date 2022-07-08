@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
 
 namespace Ulbraflix.data.mappings;
