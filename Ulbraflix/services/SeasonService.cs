@@ -1,15 +1,16 @@
 ﻿using Ulbraflix.entities;
 using Ulbraflix.repositories;
+using Ulbraflix.repositories.interfaces;
 using Ulbraflix.services.interfaces;
 
 namespace Ulbraflix.services;
 
-public class SeasonService : IBaseService<Season>, IBaseAsyncService<Season>
+public class SeasonService : ISeasonService
 {
 
-    private readonly SeasonRepository _seasonRepository;
+    private readonly ISeasonRepository _seasonRepository;
 
-    public SeasonService(SeasonRepository _seasonRepository)
+    public SeasonService(ISeasonRepository _seasonRepository)
     {
         this._seasonRepository = _seasonRepository;
     }

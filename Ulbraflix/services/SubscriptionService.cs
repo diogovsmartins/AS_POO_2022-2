@@ -1,14 +1,15 @@
 ﻿using Ulbraflix.entities;
 using Ulbraflix.repositories;
+using Ulbraflix.repositories.interfaces;
 using Ulbraflix.services.interfaces;
 
 namespace Ulbraflix.services;
 
-public class SubscriptionService : IBaseService<Subscription>, IBaseAsyncService<Subscription>
+public class SubscriptionService : ISubscriptionService
 {
-    private readonly SubscriptionRepository _subscriptionRepository;
+    private readonly ISubscriptionRepository _subscriptionRepository;
 
-    public SubscriptionService(SubscriptionRepository _subscriptionRepository)
+    public SubscriptionService(ISubscriptionRepository _subscriptionRepository)
     {
         this._subscriptionRepository = _subscriptionRepository;
     }

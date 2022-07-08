@@ -1,15 +1,16 @@
 ﻿using Ulbraflix.entities;
 using Ulbraflix.repositories;
+using Ulbraflix.repositories.interfaces;
 using Ulbraflix.services.interfaces;
 
 namespace Ulbraflix.services;
 
-public class UserProfileService : IBaseService<UserProfile>, IBaseAsyncService<UserProfile>
+public class UserProfileService : IUserProfileService
 {
 
-    private readonly UserProfileRepository _userProfileRepository;
+    private readonly IUserProfileRepository _userProfileRepository;
 
-    public UserProfileService(UserProfileRepository userProfileRepository)
+    public UserProfileService(IUserProfileRepository userProfileRepository)
     {
         this._userProfileRepository = userProfileRepository;
     }

@@ -1,14 +1,15 @@
 ﻿using Ulbraflix.entities;
 using Ulbraflix.repositories;
+using Ulbraflix.repositories.interfaces;
 using Ulbraflix.services.interfaces;
 
 namespace Ulbraflix.services;
 
-public class SerieService : IBaseService<Serie>, IBaseAsyncService<Serie>
+public class SerieService : ISerieService
 {
-    private readonly SerieRepository _serieRepository;
+    private readonly ISerieRepository _serieRepository;
 
-    public SerieService(SerieRepository _serieRepository)
+    public SerieService(ISerieRepository _serieRepository)
     {
         this._serieRepository = _serieRepository;
     }

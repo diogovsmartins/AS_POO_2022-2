@@ -9,6 +9,11 @@ public class RatingService : IRatingService
 
     private readonly IRatingRepository _ratingRepository;
 
+    public RatingService(IRatingRepository ratingRepository)
+    {
+        this._ratingRepository = ratingRepository;
+    }
+
     public async Task<Rating> GetByIdAsync(int id)
     {
         return await _ratingRepository.GetByIdAsync(id);

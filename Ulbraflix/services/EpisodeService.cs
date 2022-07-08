@@ -1,14 +1,15 @@
 ﻿using Ulbraflix.entities;
 using Ulbraflix.repositories;
+using Ulbraflix.repositories.interfaces;
 using Ulbraflix.services.interfaces;
 
 namespace Ulbraflix.services;
 
-public class EpisodeService : IBaseService<Episode>, IBaseAsyncService<Episode>
+public class EpisodeService : IEpisodeService
 {
-    private readonly EpisodeRepository _episodeRepository;
+    private readonly IEpisodeRepository _episodeRepository;
 
-    public EpisodeService(EpisodeRepository episodeRepository)
+    public EpisodeService(IEpisodeRepository episodeRepository)
     {
         this._episodeRepository = episodeRepository;
     }
