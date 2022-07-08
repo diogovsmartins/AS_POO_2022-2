@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Ulbraflix.data.mappings;
+using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
 using Ulbraflix.entities.enums;
 

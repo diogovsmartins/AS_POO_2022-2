@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ulbraflix.entities;
+namespace Ulbraflix.domain.entities;
 
 public abstract class Title
 {
