@@ -28,23 +28,22 @@ public class RatingRepository : IRatingRepository
         return _dataContext.Rating.ToList();
     }
 
-    public void Insert(Rating entity)
+    public bool Insert(Rating entity)
     {
         _dataContext.Rating.Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(Rating entity)
+    public bool Update(Rating entity)
     {
         _dataContext.Rating.Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Delete(int id)
+    public bool Delete(Rating rating)
     {
-        Rating rating = GetById(id);
         _dataContext.Rating.Remove(rating);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<Rating> GetByIdAsync(int id)

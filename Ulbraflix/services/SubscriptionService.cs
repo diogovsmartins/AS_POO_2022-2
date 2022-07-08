@@ -25,19 +25,20 @@ public class SubscriptionService : ISubscriptionService
         return _subscriptionRepository.GetAll();
     }
 
-    public void Insert(Subscription entity)
+    public bool Insert(Subscription entity)
     {
-        _subscriptionRepository.Insert(entity);
+        return _subscriptionRepository.Insert(entity);
     }
 
-    public void Update(Subscription entity)
+    public bool Update(Subscription entity)
     {
-        _subscriptionRepository.Update(entity);
+        return _subscriptionRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        _subscriptionRepository.Delete(id);
+        Subscription subscription = GetById(id);
+        return _subscriptionRepository.Delete(subscription);
     }
 
     public async Task<Subscription> GetByIdAsync(int id)

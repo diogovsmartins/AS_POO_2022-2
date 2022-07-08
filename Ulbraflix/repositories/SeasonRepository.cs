@@ -33,23 +33,22 @@ public class SeasonRepository : ISeasonRepository
             .ToList();
     }
 
-    public void Insert(Season entity)
+    public bool Insert(Season entity)
     {
         _dataContext.Season.Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(Season entity)
+    public bool Update(Season entity)
     {
         _dataContext.Season.Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Delete(int id)
+    public bool Delete(Season season)
     {
-        Season season = GetById(id);
         _dataContext.Season.Remove(season);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<Season> GetByIdAsync(int id)

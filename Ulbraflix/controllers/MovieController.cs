@@ -125,7 +125,7 @@ public class MovieController : ControllerBase
             Movie.Rating = MovieRecord.Rating;
             Movie.Duration = MovieRecord.Duration;
             Movie.LastMinuteWatched = MovieRecord.LastMinuteWatched;
-            _movieService.Update(Movie, id);
+            _movieService.Update(Movie);
             return Ok();
         }
         
@@ -140,4 +140,3 @@ public class MovieController : ControllerBase
             return BadRequest();
         }
     }
-}

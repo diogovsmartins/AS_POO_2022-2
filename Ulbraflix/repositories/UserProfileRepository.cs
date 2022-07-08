@@ -32,25 +32,24 @@ public class UserProfileRepository : IUserProfileRepository
             .ToList();
     }
 
-    public void Insert(UserProfile entity)
+    public bool Insert(UserProfile entity)
     {
         _dataContext
             .UserProfile
             .Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(UserProfile entity)
+    public bool Update(UserProfile entity)
     {
         _dataContext.UserProfile.Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Delete(int id)
+    public bool Delete(UserProfile userProfile)
     {
-        UserProfile userProfile = GetById(id);
         _dataContext.UserProfile.Remove(userProfile);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<UserProfile> GetByIdAsync(int id)

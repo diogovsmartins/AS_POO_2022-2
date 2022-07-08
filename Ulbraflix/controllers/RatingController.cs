@@ -71,30 +71,56 @@ public class RatingController : ControllerBase
                 return new BadRequestResult();
             Rating rating = new Rating();
             rating.RatingValue = ratingRecord.RatingValue;
-            _ratingService.Insert(rating);
-            return Ok();
+            try
+            {
+                if (_ratingService.Insert(rating))
+                {
+                    return Ok("Successfully inserted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }
         
-        [HttpPut("/update/{id}")]
-        public IActionResult UpdateRating([FromBody] RatingRecord ratingRecord, int id)
+        [HttpPut("/update")]
+        public IActionResult UpdateRating([FromBody] RatingRecord ratingRecord)
         {
             if (ratingRecord.Equals(null))
                 return new BadRequestResult();
             
             Rating rating = new Rating();
             rating.RatingValue = ratingRecord.RatingValue;
-            _ratingService.Update(rating, id);
-            return Ok();
+            try
+            {
+                if (_ratingService.Update(rating))
+                {
+                    return Ok("Successfully updated");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }
         
         [HttpDelete("/delete/{id}")]
         public IActionResult DeleteRating(int id)
         {
-            if(_ratingService.Delete(id))
+            try
             {
-                return Ok();
+                if (_ratingService.Delete(id))
+                {
+                    return Ok("Successfully deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
             }
             return BadRequest();
         }
     }
-}

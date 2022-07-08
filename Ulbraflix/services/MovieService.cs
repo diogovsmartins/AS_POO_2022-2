@@ -36,18 +36,19 @@ public class MovieService : IMovieService
         return _movieRepository.GetAll();
     }
 
-    public void Insert(Movie entity)
+    public bool Insert(Movie entity)
     {
-        _movieRepository.Insert(entity);
+        return _movieRepository.Insert(entity);
     }
 
-    public void Update(Movie entity)
+    public bool Update(Movie entity)
     {
-        _movieRepository.Update(entity);
+        return _movieRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        _movieRepository.Delete(id);
+        Movie movie = GetById(id);
+        return _movieRepository.Delete(movie);
     }
 }

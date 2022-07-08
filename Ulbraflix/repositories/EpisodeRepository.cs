@@ -28,23 +28,22 @@ public class EpisodeRepository : IEpisodeRepository
         return _dataContext.Episode.ToList();
     }
 
-    public void Insert(Episode entity)
+    public bool Insert(Episode entity)
     {
         _dataContext.Episode.Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(Episode entity)
+    public bool Update(Episode entity)
     {
         _dataContext.Episode.Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Delete(int id)
+    public bool Delete(Episode episode)
     {
-        Episode Episode = GetById(id);
-        _dataContext.Episode.Remove(Episode);
-        _dataContext.SaveChangesAsync();
+        _dataContext.Episode.Remove(episode);
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<Episode> GetByIdAsync(int id)

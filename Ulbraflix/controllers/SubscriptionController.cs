@@ -104,11 +104,22 @@ public class SubscriptionController : ControllerBase
             Subscription.PaymentValue = SubscriptionRecord.PaymentValue;
             Subscription.User = SubscriptionRecord.User;
             Subscription.UsersProfiles = SubscriptionRecord.UserProfiles;
-            return Ok();
+            try
+            {
+                if (_subscriptionService.Insert(Subscription))
+                {
+                    return Ok("Successfully deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }
         
-        [HttpPut("/update/{id}")]
-        public IActionResult UpdateSubscription([FromBody] SubscriptionRecord SubscriptionRecord, int id)
+        [HttpPut("/update")]
+        public IActionResult UpdateSubscription([FromBody] SubscriptionRecord SubscriptionRecord)
         {
             if (SubscriptionRecord.Equals(null))
                 return new BadRequestResult();
@@ -120,17 +131,33 @@ public class SubscriptionController : ControllerBase
             Subscription.PaymentValue = SubscriptionRecord.PaymentValue;
             Subscription.User = SubscriptionRecord.User;
             Subscription.UsersProfiles = SubscriptionRecord.UserProfiles;
-            _subscriptionService.Update(Subscription, id);
-            return Ok();
+            try
+            {
+                if (_subscriptionService.Update(Subscription))
+                {
+                    return Ok("Successfully deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }
         
         [HttpDelete("/delete/{id}")]
         public IActionResult DeleteSubscription(int id)
         {
-            
-            if (_subscriptionService.Delete(id))
+            try
             {
-                return Ok();   
+                if (_subscriptionService.Delete(id))
+                {
+                    return Ok("Successfully deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
             }
             return BadRequest();
         }

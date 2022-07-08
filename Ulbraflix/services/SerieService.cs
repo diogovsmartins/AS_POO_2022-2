@@ -25,19 +25,20 @@ public class SerieService : ISerieService
         return _serieRepository.GetAll();
     }
 
-    public void Insert(Serie entity)
+    public bool Insert(Serie entity)
     {
-        _serieRepository.Insert(entity);
+        return _serieRepository.Insert(entity);
     }
 
-    public void Update(Serie entity)
+    public bool Update(Serie entity)
     {
-        _serieRepository.Update(entity);
+        return _serieRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        _serieRepository.Delete(id);
+        Serie serie = GetById(id);
+        return _serieRepository.Delete(serie);
     }
 
     public async Task<Serie> GetByIdAsync(int id)

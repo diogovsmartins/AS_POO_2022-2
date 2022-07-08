@@ -35,18 +35,19 @@ public class RatingService : IRatingService
         return _ratingRepository.GetAll();
     }
 
-    public void Insert(Rating entity)
+    public bool Insert(Rating entity)
     {
-        _ratingRepository.Insert(entity);
+        return _ratingRepository.Insert(entity);
     }
 
-    public void Update(Rating entity)
+    public bool Update(Rating entity)
     {
-        _ratingRepository.Update(entity);
+        return _ratingRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        _ratingRepository.Delete(id);
+        Rating rating = GetById(id);
+        return _ratingRepository.Delete(rating);
     }
 }

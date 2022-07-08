@@ -24,23 +24,23 @@ public class UserRepository : IUserRepository
         return _dataContext.User.ToList();
     }
 
-    public void Insert(User entity)
+    public bool Insert(User entity)
     {
         _dataContext.User.Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(User entity)
+    public bool Update(User entity)
     {
         _dataContext.User.Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
     
 
-    public void Delete(User user)
+    public bool Delete(User user)
     {
         _dataContext.User.Remove(user);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<User> GetByIdAsync(int id)

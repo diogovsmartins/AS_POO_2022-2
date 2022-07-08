@@ -25,23 +25,20 @@ public class UserService: IUserService
         return _userRepository.GetAll();
     }
 
-    public void Insert(User entity)
+    public bool Insert(User entity)
     {
-        _userRepository.Insert(entity);
+        return _userRepository.Insert(entity);
     }
 
-    public void Update(User entity, int id)
+    public bool Update(User entity)
     {
-        User user=GetById(id);
-        user.Email = entity.Email;
-        user.Password = entity.Password;
-        _userRepository.Update(user);
+        return _userRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        User user=GetById(id);
-        _userRepository.Delete(user);
+        User user = GetById(id);
+        return _userRepository.Delete(user);
     }
 
     public async Task<User> GetByIdAsync(int id)

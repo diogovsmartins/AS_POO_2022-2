@@ -25,21 +25,20 @@ public class EpisodeService : IEpisodeService
         return _episodeRepository.GetAll();
     }
 
-    public void Insert(Episode entity)
+    public bool Insert(Episode entity)
     {
-        _episodeRepository.Insert(entity);
+        return _episodeRepository.Insert(entity);
     }
 
-    public void Update(Episode entity, int id)
+    public bool Update(Episode entity)
     {
-        Episode episode = GetById(id);
-        _episodeRepository.Update(episode);
+        return _episodeRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
         Episode episode = GetById(id);
-        _episodeRepository.Delete(episode);
+        return _episodeRepository.Delete(episode);
     }
 
     public async Task<Episode> GetByIdAsync(int id)

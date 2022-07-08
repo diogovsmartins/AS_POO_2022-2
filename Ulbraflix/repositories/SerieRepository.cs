@@ -37,23 +37,22 @@ public class SerieRepository : ISerieRepository
             .ToList();
     }
 
-    public void Insert(Serie entity)
+    public bool Insert(Serie entity)
     {
         _dataContext.Serie.Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(Serie entity)
+    public bool Update(Serie entity)
     {
         _dataContext.Serie.Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Delete(int id)
+    public bool Delete(Serie serie)
     {
-        Serie serie = GetById(id);
         _dataContext.Serie.Remove(serie);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<Serie> GetByIdAsync(int id)

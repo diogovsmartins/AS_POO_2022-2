@@ -3,27 +3,18 @@ using Ulbraflix.domain.DTOs_e_VOs;
 using Ulbraflix.domain.entities;
 using Ulbraflix.services.interfaces;
 
-namespace Ulbraflix.controllers
-{
-
+namespace Ulbraflix.controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class UserController : ControllerBase
     {
-        //TODO:Adicionar a service correspondente :D
-        private readonly IUserService _userService;
-        private readonly IUserProfileService _userProfileService;
-        private readonly IWatchHistoryService _watchHistoryService;
         
-        public UserController(
-            IUserService userService,
-            IUserProfileService userProfileRepository,
-            IWatchHistoryService watchHistoryService)
+        private readonly IUserService _userService;
+        
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _userProfileService = userProfileRepository;
-            _watchHistoryService = watchHistoryService;
         }
         
         [HttpGet("{id}")]
@@ -44,7 +35,7 @@ public class UserController : ControllerBase
         }
         
         
-        [HttpGet("/async/")]
+        [HttpGet("/async")]
         public async Task<IActionResult> GetAllAsync()
         {
             List<User> users = new List<User>();
@@ -59,7 +50,7 @@ public class UserController : ControllerBase
         }
         
         [HttpGet]
-        public  IActionResult GetAll()
+        public IActionResult GetAll()
         {
             List<User> users = new List<User>();
             users.AddRange(_userService.GetAll());
@@ -82,12 +73,23 @@ public class UserController : ControllerBase
             User user = new User();
             user.Email = userRecord.Email;
             user.Password = userRecord.Password;
-            _userService.Insert(user);
-            return Ok();
+            try
+            {
+                if (_userService.Insert(user))
+                {
+                    return Ok("Successfully inserted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+
+            return BadRequest();
         }
         
-        [HttpPut("/update/{id}")]
-        public IActionResult UpdateUser([FromBody] UserRecord userRecord, int id)
+        [HttpPut("/update")]
+        public IActionResult UpdateUser([FromBody] UserRecord userRecord)
         {
             if (userRecord.Equals(null) ||
                 userRecord.Email.Equals(""))
@@ -96,18 +98,36 @@ public class UserController : ControllerBase
             User user = new User();
             user.Email = userRecord.Email;
             user.Password = userRecord.Password;
-            _userService.Update(user, id);
-            return Ok();
+
+            try
+            {
+                if (_userService.Update(user))
+                {
+                    return Ok("Successfully updated");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+
+            return BadRequest();
         }
         
         [HttpDelete("/delete/{id}")]
         public IActionResult DeleteUser(int id)
         {
-            if(_userService.Delete(id))
+            try
             {
-                return Ok();
+                if (_userService.Delete(id))
+                {
+                    return Ok("Successfully deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
             }
             return BadRequest();
         }
     }
-}

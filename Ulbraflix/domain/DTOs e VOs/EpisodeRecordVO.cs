@@ -1,7 +1,6 @@
 namespace Ulbraflix.domain.DTOs_e_VOs;
 
-public record EpisodeRecord(
-    int Id,
+public record EpisodeRecordVO(
     string Sinopsis,
     int Duration,
     int LastMinuteWatched);

@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="controllers" />
     <Folder Include="services" />
   </ItemGroup>
 
