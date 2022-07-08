@@ -1,4 +1,6 @@
-﻿namespace Ulbraflix.entities;
+﻿using Ulbraflix.entities;
+
+namespace Ulbraflix.domain.entities;
 
 public class Movie : Title
 {

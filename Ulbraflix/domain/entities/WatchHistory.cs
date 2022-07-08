@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Ulbraflix.entities;
+namespace Ulbraflix.domain.entities;
 
 public class WatchHistory
 {

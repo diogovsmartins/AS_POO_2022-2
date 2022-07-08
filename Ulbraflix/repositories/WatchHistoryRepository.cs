@@ -3,6 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
+using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 

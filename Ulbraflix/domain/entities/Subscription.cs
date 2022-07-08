@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Ulbraflix.entities;
 using Ulbraflix.entities.enums;
 
-namespace Ulbraflix.entities;
+namespace Ulbraflix.domain.entities;
 
 public class Subscription
 {

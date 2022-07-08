@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
-using Ulbraflix.entities;
+using Ulbraflix.domain.entities;
 using Ulbraflix.repositories.interfaces;
 
 namespace Ulbraflix.repositories;
