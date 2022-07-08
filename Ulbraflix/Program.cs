@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 
 //quando for testar migration, descomentar a linha abaixo e mudar a connString em appsettings.json.
-//builder.Services.AddDbContext<DataContext>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("ConnString")));
+builder.Services.AddDbContext<DataContext>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("ConnString")));
 
 
 var app = builder.Build();
