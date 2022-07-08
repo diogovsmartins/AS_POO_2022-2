@@ -8,30 +8,39 @@ public class RatingService : IRatingService
 {
 
     private readonly IRatingRepository _ratingRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public Task<Rating> GetByIdAsync(int id)
+    public async Task<Rating> GetByIdAsync(int id)
     {
-        return await _ratingRepository.GetById();
+        return await _ratingRepository.GetByIdAsync(id);
     }
 
-    public Task<IList<Rating>> GetAllAsync()
+    public async Task<IList<Rating>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _ratingRepository.GetAllAsync();
+    }
+
+    public Rating GetById(int id)
+    {
+        return _ratingRepository.GetById(id);
+    }
+
+    public List<Rating> GetAll()
+    {
+        return _ratingRepository.GetAll();
     }
 
     public void Insert(Rating entity)
     {
-        throw new NotImplementedException();
+        _ratingRepository.Insert(entity);
     }
 
     public void Update(Rating entity)
     {
-        throw new NotImplementedException();
+        _ratingRepository.Update(entity);
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        _ratingRepository.Delete(id);
     }
 }

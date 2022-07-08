@@ -2,8 +2,9 @@ namespace Ulbraflix.services.interfaces;
 
 public interface IBaseService<Entity> where Entity : class
 {
-    Task<Entity> GetByIdAsync(int id);
-    Task<IList<Entity>> GetAllAsync();
+    Entity GetById(int id);
+
+    List<Entity> GetAll();
     void Insert(Entity entity);
     void Update(Entity entity);
     void Delete(int id);

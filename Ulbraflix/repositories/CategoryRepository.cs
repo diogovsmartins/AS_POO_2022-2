@@ -52,7 +52,7 @@ public class CategoryRepository : ICategoryRepository
             .FirstOrDefaultAsync(category => category.Id == id);
     }
 
-    public async Task<IList<Category>> GetAllByIdAsync()
+    public async Task<IList<Category>> GetAllAsync()
     {
         return await _dataContext
             .Category

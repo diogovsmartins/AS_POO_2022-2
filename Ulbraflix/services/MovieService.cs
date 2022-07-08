@@ -9,22 +9,30 @@ public class MovieService : IMovieService
 {
 
     private readonly IMovieRepository _movieRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public MovieService(IMovieRepository movieRepository, IUnitOfWork _unitOfWork)
+    public MovieService(IMovieRepository movieRepository)
     {
         this._movieRepository = movieRepository;
-        this._unitOfWork = _unitOfWork;
     }
     
     public async Task<Movie> GetByIdAsync(int id)
     {
-        return await _movieRepository.GetById(id);
+        return await _movieRepository.GetByIdAsync(id);
     }
 
-    public Task<IList<Movie>> GetAllAsync()
+    public async Task<IList<Movie>> GetAllAsync()
     {
-        return await _movieRepository.GetAll();
+        return await _movieRepository.GetAllAsync();
+    }
+
+    public Movie GetById(int id)
+    {
+        return _movieRepository.GetById(id);
+    }
+
+    public List<Movie> GetAll()
+    {
+        return _movieRepository.GetAll();
     }
 
     public void Insert(Movie entity)

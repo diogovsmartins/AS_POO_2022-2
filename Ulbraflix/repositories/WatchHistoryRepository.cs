@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
@@ -18,17 +19,25 @@ public class WatchHistoryRepository : IWatchHistoryRepository
 
     public WatchHistory GetById(int id)
     {
-        return _dataContext.WatchHistory.SingleOrDefault(watchHistory => watchHistory.Id == id);
+        return _dataContext
+            .WatchHistory
+            .Include(watchHistory => watchHistory.Titles)
+            .SingleOrDefault(watchHistory => watchHistory.Id == id);
     }
 
     public List<WatchHistory> GetAll()
     {
-        return _dataContext.WatchHistory.ToList();
+        return _dataContext
+            .WatchHistory
+            .Include(watchHistory => watchHistory.Titles)
+            .ToList();
     }
 
     public void Insert(WatchHistory entity)
     {
-        _dataContext.WatchHistory.Add(entity);
+        _dataContext
+            .WatchHistory
+            .Add(entity);
         _dataContext.SaveChangesAsync();
     }
 
@@ -49,13 +58,15 @@ public class WatchHistoryRepository : IWatchHistoryRepository
     {
         return await _dataContext
             .WatchHistory
+            .Include(watchHistory => watchHistory.Titles)
             .FirstOrDefaultAsync(watchHistory => watchHistory.Id == id);
     }
 
-    public async Task<IList<WatchHistory>> GetAllByIdAsync()
+    public async Task<IList<WatchHistory>> GetAllAsync()
     {
         return await _dataContext
             .WatchHistory
+            .Include(watchHistory => watchHistory.Titles)
             .ToListAsync();
     }
 }

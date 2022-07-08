@@ -53,7 +53,7 @@ public class RatingRepository : IRatingRepository
             .FirstOrDefaultAsync(rating => rating.Id == id);
     }
 
-    public async Task<IList<Rating>> GetAllByIdAsync()
+    public async Task<IList<Rating>> GetAllAsync()
     {
         return await _dataContext
             .Rating

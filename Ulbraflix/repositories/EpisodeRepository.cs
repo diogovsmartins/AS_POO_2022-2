@@ -18,7 +18,9 @@ public class EpisodeRepository : IEpisodeRepository
 
     public Episode GetById(int id)
     {
-        return _dataContext.Episode.SingleOrDefault(Episode => Episode.Id == id);
+        return _dataContext
+            .Episode
+            .SingleOrDefault(Episode => Episode.Id == id);
     }
 
     public List<Episode> GetAll()
@@ -52,7 +54,7 @@ public class EpisodeRepository : IEpisodeRepository
             .FirstOrDefaultAsync(episode => episode.Id == id);
     }
 
-    public async Task<IList<Episode>> GetAllByIdAsync()
+    public async Task<IList<Episode>> GetAllAsync()
     {
         return await _dataContext
             .Episode

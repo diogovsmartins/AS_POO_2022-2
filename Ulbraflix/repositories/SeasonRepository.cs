@@ -18,12 +18,18 @@ public class SeasonRepository : ISeasonRepository
 
     public Season GetById(int id)
     {
-        return _dataContext.Season.SingleOrDefault(season => season.Id == id);
+        return _dataContext
+            .Season
+            .Include(season => season.Episode)
+            .SingleOrDefault(season => season.Id == id);
     }
 
     public List<Season> GetAll()
     {
-        return _dataContext.Season.ToList();
+        return _dataContext
+            .Season
+            .Include(season => season.Episode)
+            .ToList();
     }
 
     public void Insert(Season entity)
@@ -49,13 +55,15 @@ public class SeasonRepository : ISeasonRepository
     {
         return await _dataContext
             .Season
+            .Include(season => season.Episode)
             .FirstOrDefaultAsync(season => season.Id == id);
     }
 
-    public async Task<IList<Season>> GetAllByIdAsync()
+    public async Task<IList<Season>> GetAllAsync()
     {
         return await _dataContext
             .Season
+            .Include(season => season.Episode)
             .ToListAsync();
     }
 }

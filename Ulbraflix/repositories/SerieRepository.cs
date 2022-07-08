@@ -18,12 +18,22 @@ public class SerieRepository : ISerieRepository
 
     public Serie GetById(int id)
     {
-        return _dataContext.Serie.SingleOrDefault(serie => serie.Id == id);
+        return _dataContext
+            .Serie
+            .Include(serie => serie.Season)
+            .Include(serie => serie.Categories)
+            .Include(serie => serie.Rating)
+            .SingleOrDefault(serie => serie.Id == id);
     }
 
     public List<Serie> GetAll()
     {
-        return _dataContext.Serie.ToList();
+        return _dataContext
+            .Serie
+            .Include(serie => serie.Season)
+            .Include(serie => serie.Categories)
+            .Include(serie => serie.Rating)
+            .ToList();
     }
 
     public void Insert(Serie entity)
@@ -49,13 +59,19 @@ public class SerieRepository : ISerieRepository
     {
         return await _dataContext
             .Serie
+            .Include(serie => serie.Season)
+            .Include(serie => serie.Categories)
+            .Include(serie => serie.Rating)
             .FirstOrDefaultAsync(serie => serie.Id == id);
     }
 
-    public async Task<IList<Serie>> GetAllByIdAsync()
+    public async Task<IList<Serie>> GetAllAsync()
     {
         return await _dataContext
             .Serie
+            .Include(serie => serie.Season)
+            .Include(serie => serie.Categories)
+            .Include(serie => serie.Rating)
             .ToListAsync();
     }
 }

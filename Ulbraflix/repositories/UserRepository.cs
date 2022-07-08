@@ -52,7 +52,7 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Id == id);
     }
 
-    public async Task<IList<User>> GetAllByIdAsync()
+    public async Task<IList<User>> GetAllAsync()
     {
         return await _dataContext
             .User

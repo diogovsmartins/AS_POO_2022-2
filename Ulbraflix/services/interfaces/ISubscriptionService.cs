@@ -2,7 +2,7 @@ using Ulbraflix.entities;
 
 namespace Ulbraflix.services.interfaces;
 
-public interface ISubscriptionService : IBaseService<Subscription>
+public interface ISubscriptionService : IBaseService<Subscription>, IBaseAsyncService<Subscription>
 {
     
 }

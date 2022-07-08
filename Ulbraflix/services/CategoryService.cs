@@ -1,4 +1,3 @@
-using System.Collections;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 using Ulbraflix.services.interfaces;
@@ -8,12 +7,10 @@ namespace Ulbraflix.services;
 public class CategoryService : ICategoryService
 {
     private readonly ICategoryRepository _categoryRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public CategoryService(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+    public CategoryService(ICategoryRepository categoryRepository)
     {
         this._categoryRepository = categoryRepository;
-        this._unitOfWork = unitOfWork;
     }
 
     public async Task<Category> GetByIdAsync(int id)
@@ -39,5 +36,15 @@ public class CategoryService : ICategoryService
     public void Delete(int id)
     {
         _categoryRepository.Delete(id);
+    }
+    
+    public Category GetById(int id)
+    {
+        return _categoryRepository.GetById(id);
+    }
+
+    public List<Category> GetAll()
+    {
+        return _categoryRepository.GetAll();
     }
 }

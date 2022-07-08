@@ -18,24 +18,34 @@ public class SubscriptionRepository : ISubscriptionRepository
 
     public Subscription GetById(int id)
     {
-        return _dataContext.Subscription.SingleOrDefault(subscription => subscription.Id == id);
+        return _dataContext
+            .Subscription
+            .Include(subscription => subscription.User)
+            .Include(subscription => subscription.UsersProfiles)
+            .SingleOrDefault(subscription => subscription.Id == id);
     }
 
     public List<Subscription> GetAll()
     {
-        return _dataContext.Subscription.ToList();
+        return _dataContext
+            .Subscription
+            .Include(subscription => subscription.User)
+            .Include(subscription => subscription.UsersProfiles)
+            .ToList();
     }
 
     public void Insert(Subscription entity)
     {
         entity.IsActive = true;
-        _dataContext.Subscription.Add(entity);
+        _dataContext.Add(entity);
         _dataContext.SaveChangesAsync();
     }
 
     public void Update(Subscription entity)
     {
-        _dataContext.Subscription.Update(entity);
+        _dataContext
+            .Subscription
+            .Update(entity);
         _dataContext.SaveChangesAsync();
     }
 
@@ -50,13 +60,17 @@ public class SubscriptionRepository : ISubscriptionRepository
     {
         return await _dataContext
             .Subscription
+            .Include(subscription => subscription.User)
+            .Include(subscription => subscription.UsersProfiles)
             .FirstOrDefaultAsync(subscription => subscription.Id == id);
     }
 
-    public async Task<IList<Subscription>> GetAllByIdAsync()
+    public async Task<IList<Subscription>> GetAllAsync()
     {
         return await _dataContext
             .Subscription
+            .Include(subscription => subscription.User)
+            .Include(subscription => subscription.UsersProfiles)
             .ToListAsync();
     }
 }
