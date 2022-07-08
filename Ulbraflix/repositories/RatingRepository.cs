@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
 using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
@@ -44,5 +45,19 @@ public class RatingRepository : IRatingRepository
         Rating rating = GetById(id);
         _dataContext.Rating.Remove(rating);
         _dataContext.SaveChangesAsync();
+    }
+
+    public async Task<Rating> GetByIdAsync(int id)
+    {
+        return await _dataContext
+            .Rating
+            .FirstOrDefaultAsync(rating => rating.Id == id);
+    }
+
+    public async Task<IList<Rating>> GetAllAsync()
+    {
+        return await _dataContext
+            .Rating
+            .ToListAsync();
     }
 }

@@ -6,6 +6,8 @@ using Ulbraflix.Controllers;
 using Ulbraflix.data.context;
 using Ulbraflix.repositories;
 using Ulbraflix.repositories.interfaces;
+using Ulbraflix.services;
+using Ulbraflix.services.interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

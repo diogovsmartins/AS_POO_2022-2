@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
 using Ulbraflix.domain.entities;
 using Ulbraflix.repositories.interfaces;
@@ -17,7 +18,9 @@ public class EpisodeRepository : IEpisodeRepository
 
     public Episode GetById(int id)
     {
-        return _dataContext.Episode.SingleOrDefault(Episode => Episode.Id == id);
+        return _dataContext
+            .Episode
+            .SingleOrDefault(Episode => Episode.Id == id);
     }
 
     public List<Episode> GetAll()
@@ -42,5 +45,19 @@ public class EpisodeRepository : IEpisodeRepository
         Episode Episode = GetById(id);
         _dataContext.Episode.Remove(Episode);
         _dataContext.SaveChangesAsync();
+    }
+
+    public async Task<Episode> GetByIdAsync(int id)
+    {
+        return await _dataContext
+            .Episode
+            .FirstOrDefaultAsync(episode => episode.Id == id);
+    }
+
+    public async Task<IList<Episode>> GetAllAsync()
+    {
+        return await _dataContext
+            .Episode
+            .ToListAsync();
     }
 }
