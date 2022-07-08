@@ -1,12 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Ulbraflix.data.context;
 using Ulbraflix.domain.entities;
-using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
 
-namespace Ulbraflix.Controllers;
+namespace Ulbraflix.repositories;
 
 public class UserRepository : IUserRepository
 {
@@ -38,10 +35,10 @@ public class UserRepository : IUserRepository
         _dataContext.User.Update(entity);
         _dataContext.SaveChangesAsync();
     }
+    
 
-    public void Delete(int id)
+    public void Delete(User user)
     {
-        User user = GetById(id);
         _dataContext.User.Remove(user);
         _dataContext.SaveChangesAsync();
     }

@@ -29,14 +29,16 @@ public class CategoryService : ICategoryService
         _categoryRepository.Insert(entity);
     }
 
-    public void Update(Category entity)
+    public void Update(Category entity, int id)
     {
-        _categoryRepository.Update(entity);
+        Category category = GetById(id);
+        _categoryRepository.Update(category);
     }
 
     public void Delete(int id)
     {
-        _categoryRepository.Delete(id);
+        Category category = GetById(id);
+        _categoryRepository.Delete(category);
     }
     
     public Category GetById(int id)

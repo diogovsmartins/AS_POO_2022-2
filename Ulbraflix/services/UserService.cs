@@ -1,3 +1,4 @@
+using Ulbraflix.domain.DTOs_e_VOs;
 using Ulbraflix.domain.entities;
 using Ulbraflix.entities;
 using Ulbraflix.repositories.interfaces;
@@ -29,14 +30,18 @@ public class UserService: IUserService
         _userRepository.Insert(entity);
     }
 
-    public void Update(User entity)
+    public void Update(User entity, int id)
     {
-        _userRepository.Update(entity);
+        User user=GetById(id);
+        user.Email = entity.Email;
+        user.Password = entity.Password;
+        _userRepository.Update(user);
     }
 
     public void Delete(int id)
     {
-        _userRepository.Delete(id);
+        User user=GetById(id);
+        _userRepository.Delete(user);
     }
 
     public async Task<User> GetByIdAsync(int id)

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Ulbraflix.Controllers;
 using Ulbraflix.data.context;
 using Ulbraflix.repositories;
 using Ulbraflix.repositories.interfaces;

@@ -6,6 +6,6 @@ public interface IBaseService<Entity> where Entity : class
 
     List<Entity> GetAll();
     void Insert(Entity entity);
-    void Update(Entity entity);
+    void Update(Entity entity, int id);
     void Delete(int id);
 }

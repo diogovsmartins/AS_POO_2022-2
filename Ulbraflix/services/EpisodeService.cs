@@ -30,14 +30,16 @@ public class EpisodeService : IEpisodeService
         _episodeRepository.Insert(entity);
     }
 
-    public void Update(Episode entity)
+    public void Update(Episode entity, int id)
     {
-        _episodeRepository.Update(entity);
+        Episode episode = GetById(id);
+        _episodeRepository.Update(episode);
     }
 
     public void Delete(int id)
     {
-        _episodeRepository.Delete(id);
+        Episode episode = GetById(id);
+        _episodeRepository.Delete(episode);
     }
 
     public async Task<Episode> GetByIdAsync(int id)

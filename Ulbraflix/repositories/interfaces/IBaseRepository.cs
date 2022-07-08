@@ -8,5 +8,5 @@ public interface IBaseRepository <Entity> where Entity : class
     List<Entity> GetAll();
     void Insert(Entity entity);
     void Update(Entity entity);
-    void Delete(int id);    
+    void Delete(Entity entity);    
 }
