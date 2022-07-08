@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Ulbraflix.entities;
+﻿namespace Ulbraflix.domain.entities;
 
 public class Episode
 {

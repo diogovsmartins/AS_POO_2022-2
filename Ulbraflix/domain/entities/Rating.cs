@@ -1,4 +1,4 @@
-﻿namespace Ulbraflix.entities;
+﻿namespace Ulbraflix.domain.entities;
 
 public class Rating
 {
