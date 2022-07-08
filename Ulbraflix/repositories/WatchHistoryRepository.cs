@@ -34,25 +34,24 @@ public class WatchHistoryRepository : IWatchHistoryRepository
             .ToList();
     }
 
-    public void Insert(WatchHistory entity)
+    public bool Insert(WatchHistory entity)
     {
         _dataContext
             .WatchHistory
             .Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(WatchHistory entity)
+    public bool Update(WatchHistory entity)
     {
         _dataContext.WatchHistory.Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Delete(int id)
+    public bool Delete(WatchHistory watchHistory)
     {
-        WatchHistory watchHistory = GetById(id);
         _dataContext.WatchHistory.Remove(watchHistory);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<WatchHistory> GetByIdAsync(int id)

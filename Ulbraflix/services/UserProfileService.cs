@@ -26,19 +26,20 @@ public class UserProfileService : IUserProfileService
         return _userProfileRepository.GetAll();
     }
 
-    public void Insert(UserProfile entity)
+    public bool Insert(UserProfile entity)
     {
-        _userProfileRepository.Insert(entity);
+        return _userProfileRepository.Insert(entity);
     }
 
-    public void Update(UserProfile entity)
+    public bool Update(UserProfile entity)
     {
-        _userProfileRepository.Update(entity);
+        return _userProfileRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        _userProfileRepository.Delete(id);
+        UserProfile userProfile = GetById(id);
+        return _userProfileRepository.Delete(userProfile);
     }
 
     public async Task<UserProfile> GetByIdAsync(int id)

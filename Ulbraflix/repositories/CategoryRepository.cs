@@ -25,23 +25,22 @@ public class CategoryRepository : ICategoryRepository
         return _dataContext.Category.ToList();
     }
 
-    public void Insert(Category entity)
+    public bool Insert(Category entity)
     {
         _dataContext.Category.Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(Category entity)
+    public bool Update(Category entity)
     {
         _dataContext.Category.Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Delete(int id)
+    public bool Delete(Category category)
     {
-        Category category = GetById(id);
         _dataContext.Category.Remove(category);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<Category> GetByIdAsync(int id)

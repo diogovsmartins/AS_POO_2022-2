@@ -26,19 +26,20 @@ public class SeasonService : ISeasonService
         return _seasonRepository.GetAll();
     }
 
-    public void Insert(Season entity)
+    public bool Insert(Season entity)
     {
-        _seasonRepository.Insert(entity);
+        return _seasonRepository.Insert(entity);
     }
 
-    public void Update(Season entity)
+    public bool Update(Season entity)
     {
-        _seasonRepository.Update(entity);
+        return _seasonRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        _seasonRepository.Delete(id);
+        Season season = GetById(id);
+        return _seasonRepository.Delete(season);
     }
 
     public async Task<Season> GetByIdAsync(int id)

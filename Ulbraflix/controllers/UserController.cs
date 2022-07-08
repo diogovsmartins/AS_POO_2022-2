@@ -1,50 +1,133 @@
 using Microsoft.AspNetCore.Mvc;
+using Ulbraflix.domain.DTOs_e_VOs;
 using Ulbraflix.domain.entities;
-using Ulbraflix.entities;
+using Ulbraflix.services.interfaces;
 
-namespace Ulbraflix.controllers
-{
-
+namespace Ulbraflix.controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("user")]
 public class UserController : ControllerBase
     {
-        //TODO:Adicionar a service correspondente :D
-        public UserController(UserService userService)
+        
+        private readonly IUserService _userService;
+        
+        public UserController(IUserService userService)
         {
-            //TODO:Inicializar o service correspondente xD
+            _userService = userService;
         }
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+          User user=_userService.GetById(id);
+          UserRecordVO userRecordVo = new UserRecordVO(user.Email);
+          return Ok(userRecordVo);
+        }
+
+
+        [HttpGet("async/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            User user=await _userService.GetByIdAsync(id);
+            UserRecordVO userRecordVo = new UserRecordVO(user.Email);
+            return Ok(userRecordVo);
+        }
+        
+        
+        [HttpGet("async")]
+        public async Task<IActionResult> GetAllAsync()
+        {
+            List<User> users = new List<User>();
+            users.AddRange(await _userService.GetAllAsync());
+            List<UserRecordVO> userRecordVos = new List<UserRecordVO>();
+            users.ForEach(user =>
+            {
+                UserRecordVO userRecordVo = new UserRecordVO(user.Email);
+                userRecordVos.Add(userRecordVo);
+            });
+            return Ok(userRecordVos);
+        }
+        
         [HttpGet]
-        public Task<User> GetUsers()
+        public IActionResult GetAll()
         {
-            
+            List<User> users = new List<User>();
+            users.AddRange(_userService.GetAll());
+            List<UserRecordVO> userRecordVos = new List<UserRecordVO>();
+            users.ForEach(user =>
+            {
+                UserRecordVO userRecordVo = new UserRecordVO(user.Email);
+                userRecordVos.Add(userRecordVo);
+            });
+            return Ok(userRecordVos);
         }
 
-    
-        [HttpGet("{id:int}")]
-        public ActionResult GetUserById(int id)
+        [HttpPost ("insert")]
+        public IActionResult InsertUser([FromBody] UserRecord userRecord)
         {
+            if (userRecord.Equals(null) ||
+                userRecord.Email.Equals(""))
+                return new BadRequestResult();
             
-        }
+            User user = new User();
+            user.Email = userRecord.Email;
+            user.Password = userRecord.Password;
+            try
+            {
+                if (_userService.Insert(user))
+                {
+                    return Ok("Successfully inserted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
 
-    
-        [HttpPost]
-        public IActionResult InsertUser([FromBody] User user)
-        {
-            
+            return BadRequest();
         }
-
-        [HttpPut]
-        public ActionResult UpdateUser([FromBody] User user)
+        
+        [HttpPut("update")]
+        public IActionResult UpdateUser([FromBody] UserRecord userRecord)
         {
+            if (userRecord.Equals(null) ||
+                userRecord.Email.Equals(""))
+                return new BadRequestResult();
             
+            User user = new User();
+            user.Id = userRecord.Id;
+            user.Email = userRecord.Email;
+            user.Password = userRecord.Password;
+            try
+            {
+                if (_userService.Update(user))
+                {
+                    return Ok("Successfully updated");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+
+            return BadRequest();
         }
-
-        [HttpDelete("{id:int}")]
-        public ActionResult DeleteUser(int id)
+        
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteUser(int id)
         {
-            
+            try
+            {
+                if (_userService.Delete(id))
+                {
+                    return Ok("Successfully deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+            return BadRequest();
         }
     }
-}

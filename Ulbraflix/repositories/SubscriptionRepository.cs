@@ -35,26 +35,27 @@ public class SubscriptionRepository : ISubscriptionRepository
             .ToList();
     }
 
-    public void Insert(Subscription entity)
+    public bool Insert(Subscription entity)
     {
         entity.IsActive = true;
         _dataContext.Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(Subscription entity)
+    public bool Update(Subscription entity)
     {
         _dataContext
             .Subscription
             .Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Delete(int id)
+    public bool Delete(Subscription subscription)
     {
-        Subscription subscription = GetById(id);
-        _dataContext.Subscription.Remove(subscription);
-        _dataContext.SaveChangesAsync();
+        _dataContext
+            .Subscription
+            .Remove(subscription);
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<Subscription> GetByIdAsync(int id)

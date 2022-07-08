@@ -24,19 +24,20 @@ public class CategoryService : ICategoryService
         return await _categoryRepository.GetAllAsync();
     }
 
-    public void Insert(Category entity)
+    public bool Insert(Category entity)
     {
-        _categoryRepository.Insert(entity);
+        return _categoryRepository.Insert(entity);
     }
 
-    public void Update(Category entity)
+    public bool Update(Category entity)
     {
-        _categoryRepository.Update(entity);
+        return _categoryRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        _categoryRepository.Delete(id);
+        Category category = GetById(id);
+        return _categoryRepository.Delete(category);
     }
     
     public Category GetById(int id)

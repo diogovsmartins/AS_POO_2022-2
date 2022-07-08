@@ -24,19 +24,20 @@ public class WatchHistoryService : IWatchHistoryService
         return _watchHistoryRepository.GetAll();
     }
 
-    public void Insert(WatchHistory entity)
+    public bool Insert(WatchHistory entity)
     {
-        _watchHistoryRepository.Insert(entity);
+        return _watchHistoryRepository.Insert(entity);
     }
 
-    public void Update(WatchHistory entity)
+    public bool Update(WatchHistory entity)
     {
-        _watchHistoryRepository.Update(entity);
+        return _watchHistoryRepository.Update(entity);
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-        _watchHistoryRepository.Delete(id);
+        WatchHistory watchHistory = GetById(id);
+        return _watchHistoryRepository.Delete(watchHistory);
     }
 
     public async Task<WatchHistory> GetByIdAsync(int id)

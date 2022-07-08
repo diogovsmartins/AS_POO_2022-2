@@ -35,23 +35,22 @@ public class MovieRepository : IMovieRepository
             .ToList();
     }
 
-    public void Insert(Movie entity)
+    public bool Insert(Movie entity)
     {
         _dataContext.Movie.Add(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Update(Movie entity)
+    public bool Update(Movie entity)
     {
         _dataContext.Movie.Update(entity);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
-    public void Delete(int id)
+    public bool Delete(Movie movie)
     {
-        Movie movie = GetById(id);
         _dataContext.Movie.Remove(movie);
-        _dataContext.SaveChangesAsync();
+        return (_dataContext.SaveChanges()) > 0;
     }
 
     public async Task<Movie> GetByIdAsync(int id)
