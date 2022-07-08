@@ -5,6 +5,8 @@ using Ulbraflix.services.interfaces;
 
 namespace Ulbraflix.controllers;
 
+[ApiController]
+[Route("userprofile")]
 public class UserProfileController : ControllerBase
 {
      private readonly IUserProfileService _userProfileService;
@@ -25,7 +27,7 @@ public class UserProfileController : ControllerBase
         }
 
 
-        [HttpGet("/async/{id}")]
+        [HttpGet("async/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             UserProfile userProfile=await _userProfileService.GetByIdAsync(id);
@@ -34,7 +36,7 @@ public class UserProfileController : ControllerBase
         }
         
         
-        [HttpGet("/async/")]
+        [HttpGet("async")]
         public async Task<IActionResult> GetAllAsync()
         {
             List<UserProfile> userProfiles = new List<UserProfile>();
@@ -62,7 +64,7 @@ public class UserProfileController : ControllerBase
             return Ok(userProfileRecords);
         }
 
-        [HttpPost ("/insert")]
+        [HttpPost ("insert")]
         public IActionResult InsertUserProfile([FromBody] UserProfileRecord userProfileRecord)
         {
             if (userProfileRecord.Equals(null))
@@ -84,7 +86,7 @@ public class UserProfileController : ControllerBase
             return BadRequest();
         }
         
-        [HttpPut("/update")]
+        [HttpPut("update")]
         public IActionResult UpdateUserProfile([FromBody] UserProfileRecord userProfileRecord)
         {
             if (userProfileRecord.Equals(null))
@@ -108,7 +110,7 @@ public class UserProfileController : ControllerBase
             return BadRequest();
         }
         
-        [HttpDelete("/delete/{id}")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteUserProfile(int id)
         {
             try

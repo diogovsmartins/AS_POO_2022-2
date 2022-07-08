@@ -6,7 +6,7 @@ using Ulbraflix.services.interfaces;
 namespace Ulbraflix.controllers
 {
 [ApiController]
-[Route("[controller]")]
+[Route("category")]
     public class CategoryController: ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -25,7 +25,7 @@ namespace Ulbraflix.controllers
         }
 
 
-        [HttpGet("/async/{id}")]
+        [HttpGet("async/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             Category category=await _categoryService.GetByIdAsync(id);
@@ -34,7 +34,7 @@ namespace Ulbraflix.controllers
         }
         
         
-        [HttpGet("/async/")]
+        [HttpGet("async/")]
         public async Task<IActionResult> GetAllAsync()
         {
             List<Category> categories = new List<Category>();
@@ -62,7 +62,7 @@ namespace Ulbraflix.controllers
             return Ok(categoryRecords);
         }
 
-        [HttpPost ("/insert")]
+        [HttpPost ("insert")]
         public IActionResult InsertCategory([FromBody] CategoryRecord categoryRecord)
         {
             try
@@ -85,7 +85,7 @@ namespace Ulbraflix.controllers
             return BadRequest();
         }
         
-        [HttpPut("/update")]
+        [HttpPut("update")]
         public IActionResult UpdateCategory([FromBody] CategoryRecord categoryRecord)
         {
             try
@@ -110,7 +110,7 @@ namespace Ulbraflix.controllers
             return BadRequest();
         }
         
-        [HttpDelete("/delete/{id}")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteCategory(int id)
         {
             try

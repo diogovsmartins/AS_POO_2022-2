@@ -7,7 +7,7 @@ namespace Ulbraflix.controllers;
 
 
 [ApiController]
-[Route("[controller]")]
+[Route("rating")]
 public class RatingController : ControllerBase
 {
     private readonly IRatingService _ratingService;
@@ -27,7 +27,7 @@ public class RatingController : ControllerBase
         }
 
 
-        [HttpGet("/async/{id}")]
+        [HttpGet("async/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             Rating rating=await _ratingService.GetByIdAsync(id);
@@ -36,7 +36,7 @@ public class RatingController : ControllerBase
         }
         
         
-        [HttpGet("/async/")]
+        [HttpGet("async/")]
         public async Task<IActionResult> GetAllAsync()
         {
             List<Rating> ratings = new List<Rating>();
@@ -64,7 +64,7 @@ public class RatingController : ControllerBase
             return Ok(ratingRecordVOs);
         }
 
-        [HttpPost ("/insert")]
+        [HttpPost ("insert")]
         public IActionResult InsertRating([FromBody] RatingRecord ratingRecord)
         {
             try
@@ -86,7 +86,7 @@ public class RatingController : ControllerBase
             return BadRequest();
         }
         
-        [HttpPut("/update")]
+        [HttpPut("update")]
         public IActionResult UpdateRating([FromBody] RatingRecord ratingRecord)
         {
             try
@@ -110,7 +110,7 @@ public class RatingController : ControllerBase
             return BadRequest();
         }
         
-        [HttpDelete("/delete/{id}")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteRating(int id)
         {
             try

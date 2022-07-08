@@ -6,7 +6,7 @@ using Ulbraflix.services.interfaces;
 namespace Ulbraflix.controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("user")]
 public class UserController : ControllerBase
     {
         
@@ -26,7 +26,7 @@ public class UserController : ControllerBase
         }
 
 
-        [HttpGet("/async/{id}")]
+        [HttpGet("async/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             User user=await _userService.GetByIdAsync(id);
@@ -35,7 +35,7 @@ public class UserController : ControllerBase
         }
         
         
-        [HttpGet("/async")]
+        [HttpGet("async")]
         public async Task<IActionResult> GetAllAsync()
         {
             List<User> users = new List<User>();
@@ -63,7 +63,7 @@ public class UserController : ControllerBase
             return Ok(userRecordVos);
         }
 
-        [HttpPost ("/insert")]
+        [HttpPost ("insert")]
         public IActionResult InsertUser([FromBody] UserRecord userRecord)
         {
             if (userRecord.Equals(null) ||
@@ -88,7 +88,7 @@ public class UserController : ControllerBase
             return BadRequest();
         }
         
-        [HttpPut("/update")]
+        [HttpPut("update")]
         public IActionResult UpdateUser([FromBody] UserRecord userRecord)
         {
             if (userRecord.Equals(null) ||
@@ -114,7 +114,7 @@ public class UserController : ControllerBase
             return BadRequest();
         }
         
-        [HttpDelete("/delete/{id}")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteUser(int id)
         {
             try

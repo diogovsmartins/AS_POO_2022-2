@@ -5,6 +5,8 @@ using Ulbraflix.services.interfaces;
 
 namespace Ulbraflix.controllers;
 
+[ApiController]
+[Route("season")]
 public class SeasonController : ControllerBase
 {
     private readonly ISeasonService _seasonService;
@@ -24,7 +26,7 @@ public class SeasonController : ControllerBase
     }
 
 
-    [HttpGet("/async/{id}")]
+    [HttpGet("async/{id}")]
     public async Task<IActionResult> GetByIdAsync(int id)
     {
         Season season=await _seasonService.GetByIdAsync(id);
@@ -33,7 +35,7 @@ public class SeasonController : ControllerBase
     }
     
     
-    [HttpGet("/async")]
+    [HttpGet("async")]
     public async Task<IActionResult> GetAllAsync()
     {
         List<Season> seasons = new List<Season>();
@@ -61,7 +63,7 @@ public class SeasonController : ControllerBase
         return Ok(seasonRecords);
     }
 
-    [HttpPost ("/insert")]
+    [HttpPost ("insert")]
     public IActionResult InsertSeason([FromBody] SeasonRecord seasonRecord)
     {
         if (seasonRecord.Equals(null))
@@ -82,7 +84,7 @@ public class SeasonController : ControllerBase
         return BadRequest();
     }
     
-    [HttpPut("/update")]
+    [HttpPut("update")]
     public IActionResult UpdateSeason([FromBody] SeasonRecord seasonRecord)
     {
         if (seasonRecord.Equals(null))
@@ -105,7 +107,7 @@ public class SeasonController : ControllerBase
         return BadRequest();
     }
     
-    [HttpDelete("/delete/{id}")]
+    [HttpDelete("delete/{id}")]
     public IActionResult DeleteSeason(int id)
     {
         try

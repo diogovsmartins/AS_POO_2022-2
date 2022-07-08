@@ -8,7 +8,7 @@ namespace Ulbraflix.controllers
 
 
 [ApiController]
-[Route("[controller]")]
+[Route("subscription")]
 public class SubscriptionController : ControllerBase
     {
         private readonly ISubscriptionService _subscriptionService;
@@ -34,7 +34,7 @@ public class SubscriptionController : ControllerBase
         }
 
 
-        [HttpGet("/async/{id}")]
+        [HttpGet("async/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             Subscription Subscription=await _subscriptionService.GetByIdAsync(id);
@@ -50,7 +50,7 @@ public class SubscriptionController : ControllerBase
         }
         
         
-        [HttpGet("/async")]
+        [HttpGet("async")]
         public async Task<IActionResult> GetAllAsync()
         {
             List<Subscription> Subscriptions = new List<Subscription>();
@@ -91,7 +91,7 @@ public class SubscriptionController : ControllerBase
             return Ok(SubscriptionRecords);
         }
 
-        [HttpPost ("/insert")]
+        [HttpPost ("insert")]
         public IActionResult InsertSubscription([FromBody] SubscriptionRecord SubscriptionRecord)
         {
             try
@@ -119,7 +119,7 @@ public class SubscriptionController : ControllerBase
             return BadRequest();
         }
         
-        [HttpPut("/update")]
+        [HttpPut("update")]
         public IActionResult UpdateSubscription([FromBody] SubscriptionRecord SubscriptionRecord)
         {
             try
@@ -148,7 +148,7 @@ public class SubscriptionController : ControllerBase
             return BadRequest();
         }
         
-        [HttpDelete("/delete/{id}")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteSubscription(int id)
         {
             try

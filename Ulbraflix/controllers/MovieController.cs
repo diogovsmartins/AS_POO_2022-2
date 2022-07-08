@@ -6,7 +6,7 @@ using Ulbraflix.services.interfaces;
 namespace Ulbraflix.controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("movie")]
 public class MovieController : ControllerBase
     {
         private readonly IMovieService _movieService;
@@ -33,7 +33,7 @@ public class MovieController : ControllerBase
         }
 
 
-        [HttpGet("/async/{id}")]
+        [HttpGet("async/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             Movie Movie = await _movieService.GetByIdAsync(id);
@@ -50,7 +50,7 @@ public class MovieController : ControllerBase
         }
         
         
-        [HttpGet("/async/")]
+        [HttpGet("async/")]
         public async Task<IActionResult> GetAllAsync()
         {
             List<Movie> Movies = new List<Movie>();
@@ -94,7 +94,7 @@ public class MovieController : ControllerBase
             return Ok(MovieRecords);
         }
 
-        [HttpPost ("/insert")]
+        [HttpPost ("insert")]
         public IActionResult InsertMovie([FromBody] MovieRecord MovieRecord)
         {
             try
@@ -123,7 +123,7 @@ public class MovieController : ControllerBase
             return BadRequest();
         }   
         
-        [HttpPut("/update")]
+        [HttpPut("update")]
         public IActionResult UpdateMovie([FromBody] MovieRecord MovieRecord)
         {
             try
@@ -153,7 +153,7 @@ public class MovieController : ControllerBase
             return BadRequest();
         }
         
-        [HttpDelete("/delete/{id}")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteMovie(int id)
         {
             try

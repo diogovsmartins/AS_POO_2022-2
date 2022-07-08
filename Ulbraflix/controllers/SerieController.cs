@@ -6,7 +6,7 @@ using Ulbraflix.services.interfaces;
 namespace Ulbraflix.controllers;
 
 [ApiController]
-[Route("[controller")]
+[Route("serie")]
 public class SerieController : ControllerBase
 {
     private readonly ISerieService _serieService;
@@ -25,7 +25,7 @@ public class SerieController : ControllerBase
         return Ok(serieRecordVO);
     }
 
-    [HttpGet("/async/{id}")]
+    [HttpGet("async/{id}")]
     public async Task<IActionResult> GetByIdAsync(int id)
     {
         Serie serie = _serieService.GetById(id);
@@ -38,7 +38,7 @@ public class SerieController : ControllerBase
             serie.Seasons);
         return Ok(serieRecordVO);
     }
-    [HttpGet("/async")]
+    [HttpGet("async")]
     public async Task<IActionResult> GetAllAsync()
     {
         List<Serie> Series = new List<Serie>();
@@ -76,7 +76,7 @@ public class SerieController : ControllerBase
         });
         return Ok(SerieRecords);
     }
-    [HttpPost ("/insert")]
+    [HttpPost ("insert")]
     public IActionResult InsertSerie([FromBody] SerieRecord SerieRecord)
     {
         try
@@ -103,7 +103,7 @@ public class SerieController : ControllerBase
         }
         return BadRequest();
     }
-    [HttpPut("/update")]
+    [HttpPut("update")]
     public IActionResult UpdateSerie([FromBody] SerieRecord SerieRecord)
     {
         try
@@ -131,7 +131,7 @@ public class SerieController : ControllerBase
         }
         return BadRequest();
     }
-    [HttpDelete("/delete/{id}")]
+    [HttpDelete("delete/{id}")]
     public IActionResult DeleteSerie(int id)
     {
         try

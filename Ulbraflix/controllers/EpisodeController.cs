@@ -6,7 +6,7 @@ using Ulbraflix.services.interfaces;
 namespace Ulbraflix.controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("episode")]
 public class EpisodeController : ControllerBase
 {
     private readonly IEpisodeService _episodeService;
@@ -24,7 +24,7 @@ public class EpisodeController : ControllerBase
         return Ok(episodeRecord);
     }
 
-    [HttpGet("/async/{id}")]
+    [HttpGet("async/{id}")]
     public async Task<IActionResult> GetByIdAsync(int id)
     {
         Episode episode = await _episodeService.GetByIdAsync(id);
@@ -45,7 +45,7 @@ public class EpisodeController : ControllerBase
         return Ok(episodeRecords);
     }
     
-    [HttpGet("/async")]
+    [HttpGet("async")]
     public async Task<IActionResult> GetAllAsync()
     {
         List<Episode> episodes = new List<Episode>();
@@ -59,7 +59,7 @@ public class EpisodeController : ControllerBase
         return Ok(episodeRecords);
     }
 
-    [HttpPost("/insert")]
+    [HttpPost("insert")]
     public IActionResult InsertEpisode([FromBody] EpisodeRecord episodeRecord)
     {
         try
@@ -86,7 +86,7 @@ public class EpisodeController : ControllerBase
         return BadRequest();
     }
     
-    [HttpPost("/update")]
+    [HttpPost("update")]
     public IActionResult UpdateEpisode([FromBody] EpisodeRecord episodeRecord)
     {
         try
@@ -115,7 +115,7 @@ public class EpisodeController : ControllerBase
         return BadRequest();
     }
     
-    [HttpDelete("/delete/{id}")]
+    [HttpDelete("delete/{id}")]
     public IActionResult DeleteUser(int id)
     {
         try
